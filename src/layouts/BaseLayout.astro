@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import en from "../i18n/en";
+import el from "../i18n/el";
+import { beatstarsLinks, socialLinks } from "../config/links";
 
 interface Props {
   title?: string;
@@ -7,6 +10,7 @@ interface Props {
 
 const { title = "Mr. Bonzo | Type Beats" } = Astro.props;
 const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
+const i18nPayload = { en, el };
 ---
 
 <!doctype html>
@@ -26,9 +30,9 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
         <div class="rounded-2xl border border-fuchsia-500/25 bg-black/70 px-4 py-4 backdrop-blur-md sm:px-6">
           <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:justify-between">
             <nav class="order-3 hidden items-center justify-center gap-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-fuchsia-200 md:order-1 md:flex md:w-auto lg:gap-5 lg:text-[11px] lg:tracking-[0.18em]">
-              <a href="/" class="transition hover:text-fuchsia-300">Home</a>
-              <a href="#beats" class="transition hover:text-fuchsia-300">Beats</a>
-              <a href="#beatstars" class="transition hover:text-fuchsia-300">Player</a>
+              <a href="/" class="transition hover:text-fuchsia-300" data-i18n="nav.home">Home</a>
+              <a href="#beats" class="transition hover:text-fuchsia-300" data-i18n="nav.beats">Beats</a>
+              <a href="#beatstars" class="transition hover:text-fuchsia-300" data-i18n="nav.player">Player</a>
             </nav>
 
             <a href="/" class="order-1 inline-flex w-full items-center justify-center md:order-2 md:w-auto">
@@ -41,50 +45,107 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
 
             <nav class="order-2 flex w-full items-center justify-center gap-5 pt-1 md:order-3 md:w-auto md:justify-end md:gap-4 md:pt-0 lg:gap-7" aria-label="Social links">
               <a
-                href="https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+                href={socialLinks.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="Spotify"
                 title="Spotify"
+                data-i18n="nav.spotify"
               >
                 Spotify
               </a>
               <a
-                href="https://www.youtube.com/@mrbonzobeatz"
+                href={socialLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="YouTube"
                 title="YouTube"
+                data-i18n="nav.youtube"
               >
                 YouTube
               </a>
               <a
-                href="https://www.tiktok.com/@mr.bonzobeats"
+                href={socialLinks.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="TikTok"
                 title="TikTok"
+                data-i18n="nav.tiktok"
               >
                 TikTok
               </a>
               <a
-                href="https://www.beatstars.com/mrbonzobeats"
+                href={beatstarsLinks.profile}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="Store"
                 title="Store"
+                data-i18n="nav.store"
               >
                 Store
               </a>
+              <div class="ml-1 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] lg:text-xs lg:tracking-[0.2em]">
+                <button
+                  type="button"
+                  data-lang-switch="en"
+                  class="rounded px-1 text-fuchsia-200 transition hover:text-fuchsia-300 data-[active=true]:text-fuchsia-300 data-[active=true]:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                >
+                  EN
+                </button>
+                <span class="text-fuchsia-500/70">|</span>
+                <button
+                  type="button"
+                  data-lang-switch="el"
+                  class="rounded px-1 text-fuchsia-200 transition hover:text-fuchsia-300 data-[active=true]:text-fuchsia-300 data-[active=true]:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                >
+                  EL
+                </button>
+              </div>
             </nav>
           </div>
         </div>
       </header>
       <slot />
     </main>
+    <script is:inline define:vars={{ i18nPayload }}>
+      const dictionaries = i18nPayload;
+      const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+
+      const applyLanguage = (lang) => {
+        const dict = dictionaries[lang] || dictionaries.en;
+        document.documentElement.lang = lang;
+        localStorage.setItem("site-lang", lang);
+
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.getAttribute("data-i18n");
+          const value = key ? getByPath(dict, key) : null;
+          if (typeof value === "string") node.textContent = value;
+        });
+
+        document.querySelectorAll("[data-i18n-status]").forEach((node) => {
+          const status = node.getAttribute("data-i18n-status");
+          const key =
+            status === "live" ? "releases.statusLive" : status === "error" ? "releases.statusError" : "releases.statusFallback";
+          const value = getByPath(dict, key);
+          if (typeof value === "string") node.textContent = value;
+        });
+
+        document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
+          const isActive = btn.getAttribute("data-lang-switch") === lang;
+          btn.setAttribute("data-active", isActive ? "true" : "false");
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      };
+
+      const initial = localStorage.getItem("site-lang") || "en";
+      applyLanguage(initial);
+      document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
+        btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch") || "en"));
+      });
+    </script>
   </body>
 </html>

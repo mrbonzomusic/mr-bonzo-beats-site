@@ -1,29 +1,32 @@
+---
+import { socialLinks } from "../config/links";
+---
+
 <footer id="contact" class="mt-20 border-t border-purple-700/25 pt-8">
   <div class="flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
     <p class="text-xs uppercase tracking-[0.2em] text-purple-300/75">
-      Copyright © {new Date().getFullYear()} Mr. Bonzo. All rights reserved.
+      Copyright © {new Date().getFullYear()} Mr. Bonzo. <span data-i18n="footer.rights">All rights reserved.</span>
     </p>
     <div class="flex flex-wrap items-center justify-center gap-5 sm:justify-end">
       <a
-        href="https://www.instagram.com/mrbonzobeats/"
+        href={socialLinks.instagram}
         target="_blank"
         rel="noopener noreferrer"
         class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300"
+        data-i18n="footer.instagram"
       >
         Instagram (@mrbonzobeats)
       </a>
       <a
-        href="https://www.youtube.com/@mrbonzobeatz"
+        href={socialLinks.youtube}
         target="_blank"
         rel="noopener noreferrer"
         class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300"
+        data-i18n="nav.youtube"
       >
         YouTube
       </a>
-      <a
-        href="mailto:mrbonzomusic@gmail.com"
-        class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300"
-      >
+      <a href={socialLinks.email} class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300">
         mrbonzomusic@gmail.com
       </a>
     </div>

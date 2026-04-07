@@ -1,17 +1,11 @@
----
-const services = ["Music Production", "Recording", "Mixing & Mastering", "Sound Design", "Scoring for Media"];
----
-
 <section id="services" class="mt-16 rounded-3xl border border-fuchsia-500/30 bg-black/85 p-6 sm:p-8">
-  <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Professional Services</h3>
-  <p class="mt-2 text-sm text-purple-100/75">Built for artists, labels, and audiovisual projects.</p>
+  <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl" data-i18n="services.title">Professional Services</h3>
+  <p class="mt-2 text-sm text-purple-100/75" data-i18n="services.subtitle">Built for artists, labels, and audiovisual projects.</p>
   <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      services.map((service) => (
-        <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">
-          {service}
-        </div>
-      ))
-    }
+    <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">Music Production</div>
+    <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">Recording</div>
+    <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">Mixing &amp; Mastering</div>
+    <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">Sound Design</div>
+    <div class="rounded-xl border border-fuchsia-500/25 bg-black px-4 py-4 text-sm font-bold uppercase tracking-[0.14em] text-fuchsia-100">Scoring for Media</div>
   </div>
 </section>

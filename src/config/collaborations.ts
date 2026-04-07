@@ -9,5 +9,8 @@ export const collaborators = [
   "Τωμ Unit",
   "TkTzikso",
   "Dilitirio",
-  "Rocklee"
+  "Rocklee",
+  "Underground Company"
+  "Logos Timis",
+  "Elefthero Pnevma"
 ];
