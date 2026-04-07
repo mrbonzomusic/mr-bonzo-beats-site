@@ -25,7 +25,6 @@ export async function getArtistAlbums() {
     const access_token = await getAccessToken();
     if (!access_token) return [];
 
-    // ΕΔΩ Η ΔΙΟΡΘΩΣΗ: Χρησιμοποιούμε ${artist_id} και το κανονικό Spotify API URL
     const response = await fetch(
       `https://api.spotify.com/v1/artists/${artist_id}/albums?include_groups=album,single&limit=20&market=GR`,
       {
@@ -38,7 +37,6 @@ export async function getArtistAlbums() {
 
     const seen = new Set();
     return data.items.filter((item: any) => {
-      // Μετατρέπουμε σε lowercase για να πιάνουμε διπλότυπα ακόμα και με μικρά/κεφαλαία
       const itemName = item.name.toLowerCase();
       const isDuplicate = seen.has(itemName);
       seen.add(itemName);
