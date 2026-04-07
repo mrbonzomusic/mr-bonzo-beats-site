@@ -1,0 +1,60 @@
+---
+const channelPlaylistsUrl = "https://www.youtube.com/@mrbonzobeatz/playlists";
+
+const playlists = [
+  {
+    title: "Boom Bap Beats",
+    href: "https://www.youtube.com/@mrbonzobeatz/search?query=boom%20bap%20beats",
+    image: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg"
+  },
+  {
+    title: "Trap Beats",
+    href: "https://www.youtube.com/@mrbonzobeatz/search?query=trap%20beats",
+    image: "/images/Mr.%20Bonzo%20half%20face.jpg"
+  },
+  {
+    title: "Free Beats",
+    href: "https://www.youtube.com/@mrbonzobeatz/search?query=free%20beats",
+    image: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg"
+  }
+];
+---
+
+<section id="beats" class="mt-16">
+  <div class="mb-6 flex items-end justify-between gap-4">
+    <h2 class="text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl">YouTube Playlists</h2>
+    <a
+      href={channelPlaylistsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium uppercase tracking-wide text-fuchsia-300 hover:text-fuchsia-200"
+    >
+      View All
+    </a>
+  </div>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      playlists.map((playlist) => (
+        <a
+          href={playlist.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-2xl border border-fuchsia-500/30 bg-black p-4 shadow-[0_0_24px_rgba(192,38,211,0.15)] transition hover:-translate-y-1 hover:border-fuchsia-400/70"
+        >
+          <div class="aspect-video overflow-hidden rounded-xl border border-fuchsia-500/40 bg-black">
+            <img
+              src={playlist.image}
+              alt={playlist.title}
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="mt-4 flex items-center justify-between gap-4">
+            <h3 class="text-base font-bold uppercase tracking-wide text-white">{playlist.title}</h3>
+            <span class="text-xs font-semibold uppercase tracking-[0.15em] text-fuchsia-300">Open</span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>
