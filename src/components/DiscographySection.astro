@@ -1,44 +1,65 @@
 ---
-const releases = [
-  { title: "Deciduous EP", year: "2024" },
-  { title: "Rhythms Of Silence", year: "2020" },
-  { title: "Blue Dream EP", year: "2018" },
-  { title: "B-Step Project EP", year: "2011" }
+interface Release {
+  title: string;
+  year: string;
+  cover: string;
+  spotify: string;
+}
+
+interface Props {
+  releases?: Release[];
+  status?: "live" | "fallback" | "error";
+}
+
+const fallbackReleases: Release[] = [
+  {
+    title: "Deciduous EP",
+    year: "2024",
+    cover: "/images/Mr.%20Bonzo%20half%20face.jpg",
+    spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+  }
 ];
 
+const { releases = fallbackReleases, status = "fallback" } = Astro.props;
 const spotifyUrl = "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w";
-const youtubeUrl = "https://www.youtube.com/@mrbonzobeatz";
+
+const statusLabel =
+  status === "live" ? "Spotify API: Live Data" : status === "error" ? "Spotify API: Error (Fallback Data)" : "Spotify API: Fallback Data";
 ---
 
 <section id="releases" class="mt-16">
   <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-    <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Official Releases</h3>
-    <div class="flex gap-3">
-      <a
-        href={spotifyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="rounded-full border border-fuchsia-500/55 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-fuchsia-200 transition hover:border-fuchsia-300 hover:text-fuchsia-100"
-      >
-        Listen on Spotify
-      </a>
-      <a
-        href={youtubeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="rounded-full border border-fuchsia-400/70 bg-fuchsia-600/90 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_14px_rgba(217,70,239,0.45)] transition hover:bg-fuchsia-500"
-      >
-        Watch on YouTube Official Artist Channel
-      </a>
+    <div>
+      <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Official Releases</h3>
+      <p class="mt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-fuchsia-300/85">{statusLabel}</p>
     </div>
+    <a
+      href={spotifyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rounded-full border border-fuchsia-400/70 bg-fuchsia-600/90 px-5 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_14px_rgba(217,70,239,0.45)] transition hover:bg-fuchsia-500"
+    >
+      Follow on Spotify
+    </a>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2">
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {
       releases.map((release) => (
-        <article class="rounded-2xl border border-fuchsia-500/25 bg-black/80 p-5">
-          <p class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-300/90">{release.year}</p>
-          <h4 class="mt-2 text-xl font-black uppercase tracking-wide text-white">{release.title}</h4>
+        <article class="group overflow-hidden rounded-2xl border border-fuchsia-500/25 bg-black/80 transition hover:border-fuchsia-400/55">
+          <img src={release.cover} alt={`${release.title} cover`} loading="lazy" class="aspect-square w-full object-cover" />
+          <div class="p-4">
+            <h4 class="text-lg font-black uppercase tracking-wide text-white">{release.title}</h4>
+            <p class="mt-1 text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-300/90">{release.year}</p>
+            <a
+              href={release.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex rounded-full border border-fuchsia-500/55 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-fuchsia-200 transition hover:border-fuchsia-300 hover:text-fuchsia-100"
+            >
+              Listen on Spotify
+            </a>
+          </div>
         </article>
       ))
     }

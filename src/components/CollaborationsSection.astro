@@ -1,6 +1,7 @@
 ---
-const artists = ["Thanasimos", "Saske", "ΔΠΘ", "Xplicit", "Efta", "RAF", "Pala Tranx", "Slogan"];
-const marquee = [...artists, ...artists];
+import { collaborators } from "../config/collaborations";
+
+const marquee = [...collaborators, ...collaborators];
 ---
 
 <section id="collaborations" class="relative mt-16 overflow-hidden rounded-3xl border border-fuchsia-500/30 bg-black/80 px-6 py-8 sm:px-10">
@@ -33,7 +34,7 @@ const marquee = [...artists, ...artists];
   .marquee-content {
     display: inline-flex;
     white-space: nowrap;
-    animation: brand-ticker 34s linear infinite;
+    animation: brand-ticker 52s linear infinite;
   }
 
   @keyframes brand-ticker {

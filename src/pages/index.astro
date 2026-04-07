@@ -8,6 +8,44 @@ import Hero from "../components/Hero.astro";
 import ServicesSection from "../components/ServicesSection.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import TypeBeatGrid from "../components/TypeBeatGrid.astro";
+import { fetchArtistReleases, type SpotifyRelease, type SpotifyFetchStatus } from "../lib/spotify";
+
+const fallbackReleases: SpotifyRelease[] = [
+  {
+    title: "Deciduous EP",
+    year: "2024",
+    cover: "/images/Mr.%20Bonzo%20half%20face.jpg",
+    spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+  },
+  {
+    title: "Rhythms Of Silence",
+    year: "2020",
+    cover: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg",
+    spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+  },
+  {
+    title: "Blue Dream EP",
+    year: "2018",
+    cover: "/images/Mr.%20Bonzo%20half%20face.jpg",
+    spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+  },
+  {
+    title: "B-Step Project EP",
+    year: "2011",
+    cover: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg",
+    spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
+  }
+];
+
+const spotifyApiResult = await fetchArtistReleases({
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
+  clientSecret: import.meta.env.SPOTIFY_CLIENT_SECRET,
+  artistId: import.meta.env.SPOTIFY_ARTIST_ID,
+  fallbackCover: "/images/Mr.%20Bonzo%20half%20face.jpg"
+});
+
+const spotifyReleases = spotifyApiResult.releases.length ? spotifyApiResult.releases : fallbackReleases;
+const releasesStatus: SpotifyFetchStatus = spotifyApiResult.releases.length ? spotifyApiResult.status : "fallback";
 ---
 
 <BaseLayout title="Mr. Bonzo | Beatmaker Portfolio">
@@ -16,7 +54,7 @@ import TypeBeatGrid from "../components/TypeBeatGrid.astro";
   <FeaturedBeatstars />
   <AboutSection />
   <CollaborationsSection />
-  <DiscographySection />
+  <DiscographySection releases={spotifyReleases} status={releasesStatus} />
   <ServicesSection />
   <SiteFooter />
 </BaseLayout>
