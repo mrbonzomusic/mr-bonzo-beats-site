@@ -10,7 +10,7 @@ export const collaborators = [
   "TkTzikso",
   "Dilitirio",
   "Rocklee",
-  "Underground Company"
+  "Underground Company",
   "Logos Timis",
   "Elefthero Pnevma"
 ];
