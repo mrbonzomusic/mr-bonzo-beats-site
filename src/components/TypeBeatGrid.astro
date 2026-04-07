@@ -1,21 +1,22 @@
 ---
 const channelPlaylistsUrl = "https://www.youtube.com/@mrbonzobeatz/playlists";
+const beatstarsStoreUrl = "https://www.beatstars.com/mrbonzobeats";
 
 const playlists = [
   {
     title: "Boom Bap Beats",
-    href: "https://www.youtube.com/@mrbonzobeatz/search?query=boom%20bap%20beats",
-    image: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg"
+    href: "https://www.youtube.com/watch?v=7j096H_mMnc&list=PLMdNnt6p6RrEdkjzDdS12hUJNx8ENBul6",
+    image: "/images/Boom%20Bap%20Beats.png"
   },
   {
     title: "Trap Beats",
-    href: "https://www.youtube.com/@mrbonzobeatz/search?query=trap%20beats",
-    image: "/images/Mr.%20Bonzo%20half%20face.jpg"
+    href: "https://www.youtube.com/watch?v=b6-ThC1GU2Q&list=PLMdNnt6p6RrEotLVDWzYhCLVH_fG3kn93",
+    image: "/images/Trap%20Beats.png"
   },
   {
     title: "Free Beats",
-    href: "https://www.youtube.com/@mrbonzobeatz/search?query=free%20beats",
-    image: "/images/Mr.%20Bonzo%20Beats%20in%20the%20studio.jpg"
+    href: "https://www.youtube.com/watch?v=kPGXHFoG4LI&list=PLMdNnt6p6RrEt5bZVQd1bZZ21DUj7LvyW",
+    image: "/images/Free%20Beats.png"
   }
 ];
 ---
@@ -35,25 +36,38 @@ const playlists = [
   <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {
       playlists.map((playlist) => (
-        <a
-          href={playlist.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group rounded-2xl border border-fuchsia-500/30 bg-black p-4 shadow-[0_0_24px_rgba(192,38,211,0.15)] transition hover:-translate-y-1 hover:border-fuchsia-400/70"
-        >
-          <div class="aspect-video overflow-hidden rounded-xl border border-fuchsia-500/40 bg-black">
+        <article class="group rounded-2xl border border-fuchsia-500/30 bg-black p-4 shadow-[0_0_24px_rgba(192,38,211,0.15)] transition hover:-translate-y-1 hover:border-fuchsia-400/70">
+          <div class="relative aspect-video overflow-hidden rounded-xl border border-fuchsia-500/40 bg-black">
             <img
               src={playlist.image}
               alt={playlist.title}
               class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
               loading="lazy"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/30"></div>
+            <h3 class="absolute bottom-3 left-3 right-3 text-base font-black uppercase tracking-[0.12em] text-white">
+              {playlist.title}
+            </h3>
           </div>
-          <div class="mt-4 flex items-center justify-between gap-4">
-            <h3 class="text-base font-bold uppercase tracking-wide text-white">{playlist.title}</h3>
-            <span class="text-xs font-semibold uppercase tracking-[0.15em] text-fuchsia-300">Open</span>
+          <div class="mt-4 flex items-center gap-3">
+            <a
+              href={playlist.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex rounded-full border border-fuchsia-500/55 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-fuchsia-200 transition hover:border-fuchsia-300 hover:text-fuchsia-100"
+            >
+              Open
+            </a>
+            <a
+              href={beatstarsStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex rounded-full border border-fuchsia-400/70 bg-fuchsia-600/85 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_14px_rgba(217,70,239,0.45)] transition hover:bg-fuchsia-500"
+            >
+              Shop on Beatstars
+            </a>
           </div>
-        </a>
+        </article>
       ))
     }
   </div>

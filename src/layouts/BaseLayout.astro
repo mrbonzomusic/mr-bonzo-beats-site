@@ -24,27 +24,27 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
     <main class="mx-auto max-w-7xl px-6 pb-16 pt-8 sm:px-10 lg:px-16">
       <header class="sticky top-0 z-50 mb-12">
         <div class="rounded-2xl border border-fuchsia-500/25 bg-black/70 px-4 py-4 backdrop-blur-md sm:px-6">
-          <div class="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
-            <nav class="flex items-center justify-center gap-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-fuchsia-200 md:justify-start">
+          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:justify-between">
+            <nav class="order-3 hidden items-center justify-center gap-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-fuchsia-200 md:order-1 md:flex md:w-auto lg:gap-5 lg:text-[11px] lg:tracking-[0.18em]">
               <a href="/" class="transition hover:text-fuchsia-300">Home</a>
               <a href="#beats" class="transition hover:text-fuchsia-300">Beats</a>
               <a href="#beatstars" class="transition hover:text-fuchsia-300">Player</a>
             </nav>
 
-            <a href="/" class="mx-auto inline-flex items-center">
+            <a href="/" class="order-1 inline-flex w-full items-center justify-center md:order-2 md:w-auto">
               <img
                 src={logoPath}
                 alt="Mr. Bonzo logo"
-                class="h-[78px] w-auto drop-shadow-[0_0_26px_rgba(217,70,239,0.95)]"
+                class="h-[66px] w-auto max-w-[210px] drop-shadow-[0_0_26px_rgba(217,70,239,0.95)] md:h-[56px] md:max-w-[170px] lg:h-[72px] lg:max-w-[220px]"
               />
             </a>
 
-            <nav class="flex items-center justify-center gap-7 md:justify-end" aria-label="Social links">
+            <nav class="order-2 flex w-full items-center justify-center gap-5 pt-1 md:order-3 md:w-auto md:justify-end md:gap-4 md:pt-0 lg:gap-7" aria-label="Social links">
               <a
                 href="https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="Spotify"
                 title="Spotify"
               >
@@ -54,7 +54,7 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
                 href="https://www.youtube.com/@mrbonzobeatz"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="YouTube"
                 title="YouTube"
               >
@@ -64,7 +64,7 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
                 href="https://www.tiktok.com/@mrbonzobeats"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="TikTok"
                 title="TikTok"
               >
@@ -74,7 +74,7 @@ const logoPath = "/images/mrBonzo-logo-variations-2%20transparent-Icon.png";
                 href="https://www.beatstars.com/mrbonzobeats"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)]"
+                class="text-[11px] font-black uppercase tracking-[0.16em] text-fuchsia-200 transition duration-200 hover:text-fuchsia-300 hover:drop-shadow-[0_0_10px_rgba(217,70,239,0.75)] lg:text-xs lg:tracking-[0.2em]"
                 aria-label="Store"
                 title="Store"
               >

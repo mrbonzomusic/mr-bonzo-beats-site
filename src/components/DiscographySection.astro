@@ -1,0 +1,46 @@
+---
+const releases = [
+  { title: "Deciduous EP", year: "2024" },
+  { title: "Rhythms Of Silence", year: "2020" },
+  { title: "Blue Dream EP", year: "2018" },
+  { title: "B-Step Project EP", year: "2011" }
+];
+
+const spotifyUrl = "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv?si=8IBQNsfQS7yWfIO_DFF-9w";
+const youtubeUrl = "https://www.youtube.com/@mrbonzobeatz";
+---
+
+<section id="releases" class="mt-16">
+  <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Official Releases</h3>
+    <div class="flex gap-3">
+      <a
+        href={spotifyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full border border-fuchsia-500/55 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-fuchsia-200 transition hover:border-fuchsia-300 hover:text-fuchsia-100"
+      >
+        Listen on Spotify
+      </a>
+      <a
+        href={youtubeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full border border-fuchsia-400/70 bg-fuchsia-600/90 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_14px_rgba(217,70,239,0.45)] transition hover:bg-fuchsia-500"
+      >
+        Watch on YouTube Official Artist Channel
+      </a>
+    </div>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {
+      releases.map((release) => (
+        <article class="rounded-2xl border border-fuchsia-500/25 bg-black/80 p-5">
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-300/90">{release.year}</p>
+          <h4 class="mt-2 text-xl font-black uppercase tracking-wide text-white">{release.title}</h4>
+        </article>
+      ))
+    }
+  </div>
+</section>
