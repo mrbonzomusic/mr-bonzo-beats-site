@@ -4,7 +4,7 @@ import { beatstarsLinks } from "../config/links";
 const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
 ---
 
-<section id="player" class="px-2 sm:px-4 mt-4" style="scroll-margin-top: 85px;">
+<section id="player" class="px-2 sm:px-4 mt-4" style="scroll-margin-top: 110px;">
   <div class="relative mx-auto max-w-[98%] lg:max-w-7xl">
     
     <div class="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black p-0.5 shadow-2xl">
@@ -12,8 +12,8 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
         src={playerUrl}
         width="100%"
         title="Mr. Bonzo Beatstars Player"
-        /* Το calc(100dvh - 120px) εξασφαλίζει ότι ο player πιάνει όσο περισσότερο χώρο γίνεται χωρίς scroll */
-        style="height: calc(100dvh - 120px); min-height: 550px; border:none; border-radius: 20px;"
+        /* Μικρύναμε το ύψος (από -120px σε -220px) για να χωράει άνετα στην οθόνη */
+        style="height: calc(100dvh - 220px); min-height: 480px; border:none; border-radius: 20px;"
         loading="lazy"
         class="bg-black w-full"
         allow="autoplay"
