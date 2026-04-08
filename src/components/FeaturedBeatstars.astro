@@ -1,13 +1,12 @@
 ---
 import { beatstarsLinks } from "../config/links";
 
-// Χρησιμοποιούμε το σωστό URL format για να αποφύγουμε το 403 Forbidden
-// Αν το link στο config/links.ts δεν είναι το σωστό, το διορθώνουμε τοπικά εδώ
+// Χρησιμοποιούμε το σωστό format URL για να αποφύγουμε το 403 Forbidden
 const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
 ---
 
-<section id="player" class="mt-24 scroll-mt-36">
-  <div class="relative mx-auto max-w-5xl group">
+<section id="player" class="mt-24 scroll-mt-36 px-6">
+  <div class="relative mx-auto max-w-7xl group">
     <div class="absolute -inset-1 bg-gradient-to-r from-fuchsia-600/20 to-purple-600/20 rounded-[2.5rem] blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
     
     <div class="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-black p-1 shadow-2xl">
@@ -18,7 +17,7 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
         title="Mr. Bonzo Beatstars Player"
         style="border:none; border-radius: 32px;"
         loading="lazy"
-        class="bg-black"
+        class="bg-black w-full"
         allow="autoplay"
       >
         -- Your browser does not support iframes --
@@ -27,6 +26,6 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
   </div>
 
   <p class="mt-6 text-center text-xs tracking-[0.2em] text-white/20 uppercase font-medium">
-    Secure Checkout powered by Beatstars
+    Secure Checkout • Licensing & Contracts powered by Beatstars
   </p>
 </section>
