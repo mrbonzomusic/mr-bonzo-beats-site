@@ -1,18 +1,23 @@
 ---
 import { beatstarsLinks } from "../config/links";
 
+// Χρησιμοποιούμε το σωστό format URL για να αποφύγουμε το 403 Forbidden
 const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
 ---
 
-<section id="player" class="px-2 sm:px-4 mt-4" style="scroll-margin-top: 110px;">
-  <div class="relative mx-auto max-w-[98%] lg:max-w-7xl">
+<section id="player" class="px-2 sm:px-4 mt-8" style="scroll-margin-top: 100px;">
+  <div class="relative mx-auto max-w-[98%] lg:max-w-7xl group">
+    
+    <div class="absolute -inset-1 bg-gradient-to-r from-fuchsia-600/10 to-purple-600/10 rounded-[2rem] blur opacity-50 group-hover:opacity-100 transition duration-1000"></div>
     
     <div class="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black p-0.5 shadow-2xl">
       <iframe
         src={playerUrl}
         width="100%"
         title="Mr. Bonzo Beatstars Player"
-        /* Μικρύναμε το ύψος (από -120px σε -220px) για να χωράει άνετα στην οθόνη */
+        /* height: Υπολογίζει το ύψος της οθόνης μείον 220px για να χωράει άνετα.
+           min-height: Εξασφαλίζει ότι σε πολύ μικρές οθόνες δεν θα "εξαφανιστεί".
+        */
         style="height: calc(100dvh - 220px); min-height: 480px; border:none; border-radius: 20px;"
         loading="lazy"
         class="bg-black w-full"
@@ -23,7 +28,7 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
     </div>
   </div>
 
-  <p class="mt-2 text-center text-[8px] tracking-[0.2em] text-white/10 uppercase font-medium">
-    Secure Checkout • Powered by Beatstars
+  <p class="mt-4 text-center text-[8px] tracking-[0.2em] text-white/10 uppercase font-medium">
+    Secure Checkout • Licensing & Contracts powered by Beatstars
   </p>
 </section>
