@@ -38,24 +38,24 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
               <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[30px] md:h-[35px]" />
             </a>
 
-            <nav class="hidden lg:flex items-center gap-x-5">
+            <nav class="hidden lg:flex items-center gap-x-4">
               <a href="#beats" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
               <a href="#drumkits" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.kits">Kits</a>
               <a href="#player" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
               
               <div class="relative group cursor-pointer">
-                <button type="button" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400 flex items-center gap-0.5 outline-none">
+                <button type="button" class="text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5 outline-none">
                   YouTube <svg class="h-2 w-2 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-50">
-                  <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-fuchsia-600/20 transition">Artist Channel</a>
-                  <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-fuchsia-600/20 border-t border-white/5 transition">Beats Channel</a>
+                  <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
+                  <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={socialLinks.spotify} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Discord</a>
-              <a href={pond5Link} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Pond5</a>
+              <a href={socialLinks.spotify} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-green-500/80 transition hover:text-green-500">Spotify</a>
+              <a href={discordInvite} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-[#5865F2] transition hover:text-[#7289da]">Discord</a>
+              <a href={pond5Link} target="_blank" class="text-[9px] font-bold uppercase tracking-widest text-orange-500/80 transition hover:text-orange-500">Pond5</a>
               <a href="#about" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="about.label">About</a>
               <a href="#contact" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="contact.label">Contact</a>
             </nav>
@@ -65,7 +65,9 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
                   <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EN</button>
                   <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EL</button>
                </div>
+
                <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-4 py-1.5 text-[9px] font-black uppercase text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition" data-i18n="nav.store">Store</a>
+
                <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400 focus:outline-none">
                  <svg id="burger-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                  <svg id="burger-close" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -74,29 +76,24 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
           </div>
 
           <div id="mobile-menu" class="hidden lg:hidden flex-col pt-4 pb-4 border-t border-white/5 mt-3">
-            <div class="flex flex-col gap-5 px-2">
+            <div class="flex flex-col gap-4 px-2">
               <a href="#beats" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-gray-300">Beats</a>
               <a href="#drumkits" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-gray-300">Drum Kits</a>
               <a href="#player" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-gray-300">Player</a>
               
               <div class="flex flex-col">
-                <button id="yt-mobile-btn" class="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-gray-300 py-1 outline-none">
+                <button id="yt-mobile-btn" class="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-red-500 py-1">
                   YouTube <svg id="yt-arrow" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
                 </button>
-                
-                <div id="yt-mobile-links" class="hidden flex-col pl-4 mt-3 border-l border-fuchsia-500/20 gap-y-4">
-                  <a href={ytArtist} target="_blank" class="text-[10px] font-bold uppercase text-gray-400 hover:text-white pt-1">
-                    Artist Channel
-                  </a>
-                  <div class="h-[1px] w-full bg-white/5"></div> <a href={ytBeats} target="_blank" class="text-[10px] font-bold uppercase text-gray-400 hover:text-white pb-1">
-                    Beats Channel
-                  </a>
+                <div id="yt-mobile-links" class="hidden flex-col pl-4 gap-3 mt-2 border-l border-red-500/20">
+                  <a href={ytArtist} target="_blank" class="text-[10px] font-bold uppercase text-gray-400">Artist Channel</a>
+                  <a href={ytBeats} target="_blank" class="text-[10px] font-bold uppercase text-gray-400">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={socialLinks.spotify} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-gray-300">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-gray-300">Discord</a>
-              <a href={pond5Link} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-gray-300">Pond5</a>
+              <a href={socialLinks.spotify} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-green-500">Spotify</a>
+              <a href={discordInvite} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-[#5865F2]">Discord</a>
+              <a href={pond5Link} target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-orange-500">Pond5</a>
               <a href="#about" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-gray-300">About</a>
               <a href="#contact" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-fuchsia-400">Contact</a>
             </div>
@@ -108,6 +105,7 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
     </main>
 
     <script is:inline define:vars={{ i18nPayload }}>
+      // --- Language Logic ---
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
       const applyLanguage = (lang) => {
@@ -129,17 +127,20 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
         btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
       });
 
+      // --- Mobile Menu Toggle ---
       const burgerBtn = document.getElementById('burger-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const burgerOpen = document.getElementById('burger-open');
       const burgerClose = document.getElementById('burger-close');
 
       burgerBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
         burgerOpen.classList.toggle('hidden');
         burgerClose.classList.toggle('hidden');
       });
 
+      // --- YouTube Mobile Toggle ---
       const ytBtn = document.getElementById('yt-mobile-btn');
       const ytLinks = document.getElementById('yt-mobile-links');
       const ytArrow = document.getElementById('yt-arrow');
@@ -149,6 +150,7 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
         ytArrow.classList.toggle('rotate-180');
       });
 
+      // Κλείσιμο μενού όταν πατάς link
       document.querySelectorAll('.mobile-link').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
