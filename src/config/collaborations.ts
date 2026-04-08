@@ -24,6 +24,7 @@ export const collaborators = [
   "Mavros Vales",
   "542",
   "KFA",
-  
+  "Terastios",
+
 
 ];
