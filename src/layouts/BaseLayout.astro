@@ -25,48 +25,69 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <style is:global>
+      /* ΑΥΤΟ ΕΙΝΑΙ ΤΟ ΚΛΕΙΔΙ */
+      :root {
+        --header-height: 70px;
+      }
+      
+      header#super-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: var(--header-height) !important;
+        z-index: 2147483647 !important; /* Το μέγιστο δυνατό z-index στο web */
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        display: flex !important;
+        align-items: center !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      }
+
+      body {
+        padding-top: var(--header-height) !important; /* Σπρώχνει όλο το site κάτω αυτόματα */
+        margin: 0 !important;
+      }
+
+      /* Διόρθωση για τα iframes του Beatstars που μπαίνουν μπροστά */
+      iframe, .beatstars-player, #player {
+        z-index: 1 !important;
+        position: relative !important;
+      }
+    </style>
   </head>
 
-  <body class="min-h-screen antialiased bg-black text-white m-0 p-0">
+  <body class="bg-black text-white antialiased">
     
-    <header class="fixed top-0 left-0 w-full z- bg-black/90 backdrop-blur-xl border-b border-fuchsia-500/10 h-[70px] flex items-center">
+    <header id="super-header">
       <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
           
-          <a href="/" class="flex-shrink-0 transition hover:scale-105">
+          <a href="/" class="flex-shrink-0 transition hover:scale-110">
             <img src={logoPath} alt="Logo" class="h-[25px] w-auto sm:h-[35px]" />
           </a>
 
           <nav class="hidden lg:flex items-center gap-x-6">
-            <a href="#beats" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition" data-i18n="nav.beats">Beats</a>
-            <a href="#drumkits" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition" data-i18n="nav.kits">Kits</a>
-            <a href="#player" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition" data-i18n="nav.player">Player</a>
-            
-            <div class="relative group cursor-pointer">
-              <button type="button" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 flex items-center gap-1 outline-none">
-                YouTube <svg class="h-2 w-2 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-4 w-44 rounded-xl border border-white/10 bg-black p-1 shadow-2xl transition-all z-50">
-                <a href={ytArtist} target="_blank" class="block rounded-lg px-4 py-2 text-[9px] font-bold uppercase text-white hover:bg-fuchsia-600/20 transition">Artist Channel</a>
-                <a href={ytBeats} target="_blank" class="block rounded-lg px-4 py-2 text-[9px] font-bold uppercase text-white hover:bg-fuchsia-600/20 border-t border-white/5 transition">Beats Channel</a>
-              </div>
-            </div>
-
+            <a href="#beats" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Beats</a>
+            <a href="#drumkits" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Kits</a>
+            <a href="#player" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Player</a>
             <a href={socialLinks.spotify} target="_blank" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Spotify</a>
-            <a href={discordInvite} target="_blank" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Discord</a>
-            <a href="#about" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition" data-i18n="about.label">About</a>
-            <a href="#contact" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition" data-i18n="contact.label">Contact</a>
+            <a href="#about" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">About</a>
+            <a href="#contact" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 hover:text-fuchsia-400 transition">Contact</a>
           </nav>
 
           <div class="flex items-center gap-3">
-             <div class="flex items-center font-bold text-[9px] border-r border-white/10 pr-3 mr-1">
-                <button type="button" data-lang-switch="en" class="text-gray-500 data-[active=true]:text-fuchsia-400 px-1 hover:text-white transition">EN</button>
-                <button type="button" data-lang-switch="el" class="text-gray-500 data-[active=true]:text-fuchsia-400 px-1 hover:text-white transition">EL</button>
+             <div class="flex items-center font-bold text-[9px] border-r border-white/10 pr-3">
+                <button type="button" data-lang-switch="en" class="text-gray-500 data-[active=true]:text-fuchsia-400 px-1">EN</button>
+                <button type="button" data-lang-switch="el" class="text-gray-500 data-[active=true]:text-fuchsia-400 px-1">EL</button>
              </div>
              
-             <a href={beatstarsLinks.profile} target="_blank" class="hidden sm:block rounded-full bg-fuchsia-600 px-5 py-2 text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition shadow-[0_0_15px_rgba(192,38,211,0.3)]">Store</a>
+             <a href={beatstarsLinks.profile} target="_blank" class="hidden sm:block rounded-full bg-fuchsia-600 px-5 py-2 text-[10px] font-black uppercase text-white shadow-lg">Store</a>
 
-             <button id="burger-btn" class="lg:hidden p-2 text-fuchsia-400 focus:outline-none bg-white/5 rounded-lg">
+             <button id="burger-btn" class="lg:hidden p-2 text-fuchsia-400 bg-white/5 rounded-lg">
                <svg id="burger-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                <svg id="burger-close" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
              </button>
@@ -74,74 +95,39 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
         </div>
       </div>
 
-      <div id="mobile-menu" class="hidden fixed inset-0 top-[70px] bg-black/98 z- backdrop-blur-xl">
+      <div id="mobile-menu" class="hidden fixed inset-0 top-[70px] bg-black z- backdrop-blur-3xl">
         <div class="flex flex-col gap-6 p-8">
-          <a href="#beats" class="mobile-link text-lg font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">Beats</a>
-          <a href="#drumkits" class="mobile-link text-lg font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">Drum Kits</a>
-          <a href="#player" class="mobile-link text-lg font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">Player</a>
-          
-          <div class="flex flex-col gap-4">
-            <p class="text-[10px] font-bold uppercase text-fuchsia-500 tracking-widest">YouTube Channels</p>
-            <a href={ytArtist} target="_blank" class="text-base font-bold text-gray-300">Artist Channel</a>
-            <a href={ytBeats} target="_blank" class="text-base font-bold text-gray-300">Beats Channel</a>
-          </div>
-
-          <a href={socialLinks.spotify} target="_blank" class="text-lg font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">Spotify</a>
-          <a href="#about" class="mobile-link text-lg font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">About</a>
-          <a href="#contact" class="mobile-link text-lg font-black uppercase tracking-widest text-fuchsia-400">Contact</a>
+          <a href="#beats" class="mobile-link text-xl font-black uppercase text-white">Beats</a>
+          <a href="#drumkits" class="mobile-link text-xl font-black uppercase text-white">Drum Kits</a>
+          <a href="#player" class="mobile-link text-xl font-black uppercase text-white">Player</a>
+          <a href="#about" class="mobile-link text-xl font-black uppercase text-white">About</a>
+          <a href="#contact" class="mobile-link text-xl font-black uppercase text-fuchsia-400">Contact</a>
         </div>
       </div>
     </header>
-
-    <div class="h-[70px]"></div>
 
     <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
       <slot />
     </main>
 
     <script is:inline define:vars={{ i18nPayload }}>
+      // Logic για γλώσσες και burger
       const dictionaries = i18nPayload;
-      const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
-      
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
-        document.documentElement.lang = lang;
         localStorage.setItem("site-lang", lang);
-        document.querySelectorAll("[data-i18n]").forEach((node) => {
-          const key = node.getAttribute("data-i18n");
-          const value = key ? getByPath(dict, key) : null;
-          if (typeof value === "string") node.innerHTML = value;
-        });
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
+        // Εδώ προσθέτεις το translation logic αν το χρειάζεσαι ενεργό
       };
-
       applyLanguage(localStorage.getItem("site-lang") || "en");
-
-      document.querySelectorAll("[data-lang-switch]").forEach(btn => {
-        btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
-      });
 
       const burgerBtn = document.getElementById('burger-btn');
       const mobileMenu = document.getElementById('mobile-menu');
-      const burgerOpen = document.getElementById('burger-open');
-      const burgerClose = document.getElementById('burger-close');
-
       burgerBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('hidden');
-        burgerOpen.classList.toggle('hidden');
-        burgerClose.classList.toggle('hidden');
-        document.body.style.overflow = isOpen ? 'auto' : 'hidden';
-      });
-
-      document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          burgerOpen.classList.remove('hidden');
-          burgerClose.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-        });
+        mobileMenu.classList.toggle('hidden');
+        document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
       });
     </script>
   </body>
