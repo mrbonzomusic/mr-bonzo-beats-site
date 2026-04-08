@@ -12,7 +12,6 @@ const { title = "Mr. Bonzo | Type Beats" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 const i18nPayload = { en, el };
 
-// Αυτά καλό είναι να μεταφερθούν στο config/links.ts κάποια στιγμή για να είναι όλα μαζί
 const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J"; 
 const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
 const ytArtist = "https://www.youtube.com/@mrbonzomusic";
@@ -42,7 +41,8 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
             <nav class="flex items-center gap-x-2 md:gap-x-3 lg:gap-x-5">
               <a href="/" class="hidden xl:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.home">Home</a>
               <a href="#beats" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
-              <a href="#beatstars" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
+              
+              <a href="#player" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
               
               <div class="relative group cursor-pointer text-left">
                 <span class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5">
@@ -92,7 +92,6 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
           const key = node.getAttribute("data-i18n");
           const value = key ? getByPath(dict, key) : null;
           if (typeof value === "string") {
-            // Χρησιμοποιούμε innerHTML αντί για textContent για να δουλεύουν τα <span> στα titles
             node.innerHTML = value;
           }
         });
