@@ -8,13 +8,12 @@ interface Props {
   title?: string;
 }
 
-// Κάνουμε το title πιο σύντομο για να αφήσει χώρο στην περιγραφή στα previews
 const { title = "Mr. Bonzo | Official" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 const i18nPayload = { en, el };
 
 // --- SOCIAL MEDIA & SEO CONFIG ---
-const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats, professional music production, and exclusive drum kits.";
+const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
 const ogImageURL = "https://mrbonzo-beats.pages.dev/images/og-image.jpg";
 const siteURL = "https://mrbonzo-beats.pages.dev/";
 // ---------------------------------
@@ -37,17 +36,18 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
     <meta property="og:url" content={siteURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={siteDescription} />
-    <meta property="og:image" content={`${ogImageURL}?v=1`} />
-    <meta property="og:image:secure_url" content={`${ogImageURL}?v=1`} />
+    <meta property="og:image" content={`${ogImageURL}?v=2`} />
+    <meta property="og:image:secure_url" content={`${ogImageURL}?v=2`} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={siteURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={siteDescription} />
-    <meta property="twitter:image" content={`${ogImageURL}?v=1`} />
+    <meta property="twitter:image" content={`${ogImageURL}?v=2`} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
@@ -60,12 +60,10 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
         z-index: 9999999 !important;
         padding-top: 0.75rem;
       }
-
       body {
         padding-top: 90px !important;
         background-color: black;
       }
-
       #mobile-menu {
         max-height: calc(100vh - 120px);
         overflow-y: auto;
@@ -74,16 +72,13 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
   </head>
 
   <body class="min-h-screen antialiased bg-black text-white">
-    
     <header id="main-header">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-4 py-2 shadow-2xl">
           <div class="flex items-center justify-between">
-            
             <a href="/" class="flex-shrink-0 transition hover:scale-105">
               <img src={logoPath} alt="Logo" class="h-[20px] w-auto sm:h-[28px]" />
             </a>
-
             <nav class="hidden lg:flex items-center gap-x-3 xl:gap-x-5">
               <a href="#player" class="text-[8.5px] font-bold uppercase tracking-widest text-fuchsia-400 hover:text-fuchsia-300 transition">Player</a>
               <a href="#beats" class="text-[8.5px] font-bold uppercase tracking-widest text-fuchsia-100/70 hover:text-fuchsia-400 transition">Beats</a>
@@ -96,15 +91,12 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
               <a href="#about" class="text-[8.5px] font-bold uppercase tracking-widest text-fuchsia-100/70 hover:text-fuchsia-400 transition">About</a>
               <a href="#contact" class="text-[8.5px] font-bold uppercase tracking-widest text-fuchsia-100/70 hover:text-fuchsia-400 transition">Contact</a>
             </nav>
-
             <div class="flex items-center gap-2">
                <div class="hidden xs:flex items-center gap-1 font-bold text-[8px] border-r border-fuchsia-500/20 pr-2">
                   <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EN</button>
                   <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EL</button>
                </div>
-               
                <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 text-[9px] font-black uppercase text-white hover:bg-fuchsia-500 transition shadow-lg shadow-fuchsia-600/20">Store</a>
-
                <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-100/70 hover:text-fuchsia-400 transition outline-none">
                 <svg id="b-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16m-7 6h7"/></svg>
                 <svg id="b-close" class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
@@ -112,7 +104,6 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
             </div>
           </div>
         </div>
-
         <div id="mobile-menu" class="hidden lg:hidden mt-3 mx-1 rounded-3xl border border-fuchsia-500/20 bg-black/95 backdrop-blur-2xl p-8 shadow-2xl">
           <nav class="flex flex-col gap-5 text-center">
             <a href="#player" class="m-link text-[11px] font-black uppercase tracking-[0.2em] text-fuchsia-400">Player</a>
@@ -125,7 +116,6 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
             <a href={pond5Link} target="_blank" class="m-link text-[11px] font-black uppercase tracking-[0.2em] text-fuchsia-100/80">Pond5</a>
             <a href="#about" class="m-link text-[11px] font-black uppercase tracking-[0.2em] text-fuchsia-100/80">About</a>
             <a href="#contact" class="m-link text-[11px] font-black uppercase tracking-[0.2em] text-fuchsia-400">Contact</a>
-            
             <div class="flex justify-center gap-4 pt-4 border-t border-white/5">
               <button type="button" data-lang-switch="en" class="text-[10px] font-bold text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-3 py-1">ENGLISH</button>
               <button type="button" data-lang-switch="el" class="text-[10px] font-bold text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-3 py-1">ΕΛΛΗΝΙΚΑ</button>
@@ -134,15 +124,12 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
         </div>
       </div>
     </header>
-
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
-
     <script is:inline define:vars={{ i18nPayload }}>
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
-      
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
@@ -156,24 +143,20 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
       };
-
       applyLanguage(localStorage.getItem("site-lang") || "en");
       document.querySelectorAll("[data-lang-switch]").forEach(btn => {
         btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
       });
-
       const bBtn = document.getElementById('burger-btn');
       const mMenu = document.getElementById('mobile-menu');
       const bOpen = document.getElementById('b-open');
       const bClose = document.getElementById('b-close');
-
       bBtn.addEventListener('click', () => {
         const isHidden = mMenu.classList.toggle('hidden');
         bOpen.classList.toggle('hidden', !isHidden);
         bClose.classList.toggle('hidden', isHidden);
         document.body.style.overflow = isHidden ? 'auto' : 'hidden';
       });
-
       document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => {
         mMenu.classList.add('hidden');
         bOpen.classList.remove('hidden');
