@@ -8,12 +8,13 @@ interface Props {
   title?: string;
 }
 
-const { title = "Mr. Bonzo | Type Beats" } = Astro.props;
+// Κάνουμε το title πιο σύντομο για να αφήσει χώρο στην περιγραφή στα previews
+const { title = "Mr. Bonzo | Official" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 const i18nPayload = { en, el };
 
 // --- SOCIAL MEDIA & SEO CONFIG ---
-const siteDescription = "The official website of Mr. Bonzo. High-quality music production, premium trap beats, and exclusive drum kits.";
+const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats, professional music production, and exclusive drum kits.";
 const ogImageURL = "https://mrbonzo-beats.pages.dev/images/og-image.jpg";
 const siteURL = "https://mrbonzo-beats.pages.dev/";
 // ---------------------------------
