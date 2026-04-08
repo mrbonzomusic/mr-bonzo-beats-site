@@ -20,8 +20,7 @@ const licenses = [
   }
 ];
 
-// Φτιάχνουμε ένα array για τα dots
-const slideIndices =;
+const tags = ["Beatmaker", "Engineer", "Producer"];
 ---
 
 <section id="about" class="relative mt-12 overflow-hidden rounded-3xl border border-fuchsia-500/30 bg-black">
@@ -47,7 +46,7 @@ const slideIndices =;
           <h2 class="mt-2 text-xl font-black uppercase text-white sm:text-3xl lg:text-5xl">The Architect of Energy</h2>
           <p class="mt-4 text-[13px] leading-relaxed text-gray-300 sm:text-base">{aboutContent.en.bio}</p>
           <div class="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start">
-            {["Beatmaker", "Engineer", "Producer"].map(tag => (
+            {tags.map((tag) => (
               <span class="rounded-full border border-fuchsia-500/30 px-3 py-1 text-[8px] font-bold text-fuchsia-200 uppercase">{tag}</span>
             ))}
           </div>
@@ -57,7 +56,7 @@ const slideIndices =;
           <p class="text-[10px] font-semibold uppercase tracking-widest text-fuchsia-300/80">Terms</p>
           <h2 class="mt-2 text-xl font-black uppercase text-white sm:text-3xl">Licensing Guide</h2>
           <div class="mt-5 space-y-2.5">
-            {licenses.map(l => (
+            {licenses.map((l) => (
               <div class="rounded-xl border border-white/5 bg-white/5 p-3 text-left">
                 <div class="flex justify-between items-center mb-1">
                   <span class="font-bold text-fuchsia-300 text-[10px] uppercase">{l.name}</span>
@@ -91,17 +90,17 @@ const slideIndices =;
         
         <div class="flex items-center gap-3 order-2 sm:order-1">
           <button id="prevBtn" class="p-2 border border-fuchsia-500/30 rounded-full hover:bg-fuchsia-500/20 active:scale-90 transition">
-            <svg class="w-4 h-4 text-fuchsia-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 19l-7-7 7-7" stroke-width="2.5"/></svg>
+            <svg class="w-4 h-4 text-fuchsia-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 19l-7-7 7-7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           
           <div class="flex gap-1.5">
-            {slideIndices.map(i => (
-              <div id={`dot-${i}`} class={`dot h-1 ${i === 0 ? 'w-5 bg-fuchsia-500' : 'w-1 bg-fuchsia-500/20'} rounded-full transition-all duration-300`}></div>
-            ))}
+            <div id="dot-0" class="dot h-1 w-5 bg-fuchsia-500 rounded-full transition-all duration-300"></div>
+            <div id="dot-1" class="dot h-1 w-1 bg-fuchsia-500/20 rounded-full transition-all duration-300"></div>
+            <div id="dot-2" class="dot h-1 w-1 bg-fuchsia-500/20 rounded-full transition-all duration-300"></div>
           </div>
 
           <button id="nextBtn" class="p-2 border border-fuchsia-500/30 rounded-full hover:bg-fuchsia-500/20 active:scale-90 transition">
-            <svg class="w-4 h-4 text-fuchsia-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2.5"/></svg>
+            <svg class="w-4 h-4 text-fuchsia-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </div>
@@ -111,31 +110,31 @@ const slideIndices =;
 </section>
 
 <script is:inline>
-  let current = 0;
-  const slides = [document.getElementById('slide-0'), document.getElementById('slide-1'), document.getElementById('slide-2')];
-  const dots = [document.getElementById('dot-0'), document.getElementById('dot-1'), document.getElementById('dot-2')];
-  
-  function showSlide(index) {
-    if (!slides) return;
-    slides.forEach((s, i) => {
-      if (!s || !dots[i]) return;
-      s.classList.toggle('opacity-100', i === index);
-      s.classList.toggle('relative', i === index);
-      s.classList.toggle('translate-x-0', i === index);
-      
-      s.classList.toggle('opacity-0', i !== index);
-      s.classList.toggle('absolute', i !== index);
-      s.classList.toggle('translate-x-full', i !== index);
-      s.classList.toggle('pointer-events-none', i !== index);
+  (function() {
+    let current = 0;
+    const slides = [document.getElementById('slide-0'), document.getElementById('slide-1'), document.getElementById('slide-2')];
+    const dots = [document.getElementById('dot-0'), document.getElementById('dot-1'), document.getElementById('dot-2')];
+    
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        if (!s || !dots[i]) return;
+        const isActive = i === index;
+        s.classList.toggle('opacity-100', isActive);
+        s.classList.toggle('relative', isActive);
+        s.classList.toggle('opacity-0', !isActive);
+        s.classList.toggle('absolute', !isActive);
+        s.classList.toggle('pointer-events-none', !isActive);
+        s.style.transform = isActive ? 'translateX(0)' : 'translateX(20px)';
 
-      dots[i].classList.toggle('w-5', i === index);
-      dots[i].classList.toggle('bg-fuchsia-500', i === index);
-      dots[i].classList.toggle('w-1', i !== index);
-      dots[i].classList.toggle('bg-fuchsia-500/20', i !== index);
-    });
-    current = index;
-  }
+        dots[i].classList.toggle('w-5', isActive);
+        dots[i].classList.toggle('bg-fuchsia-500', isActive);
+        dots[i].classList.toggle('w-1', !isActive);
+        dots[i].classList.toggle('bg-fuchsia-500/20', !isActive);
+      });
+      current = index;
+    }
 
-  document.getElementById('nextBtn')?.addEventListener('click', () => showSlide((current + 1) % 3));
-  document.getElementById('prevBtn')?.addEventListener('click', () => showSlide((current + 2) % 3));
+    document.getElementById('nextBtn')?.addEventListener('click', () => showSlide((current + 1) % 3));
+    document.getElementById('prevBtn')?.addEventListener('click', () => showSlide((current + 2) % 3));
+  })();
 </script>
