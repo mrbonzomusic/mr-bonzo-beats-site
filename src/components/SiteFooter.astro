@@ -2,56 +2,32 @@
 import { socialLinks } from "../config/links";
 ---
 
-<footer class="mt-20 border-t border-white/5 py-10">
-  <div class="flex flex-col gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-    <p class="text-[10px] uppercase tracking-[0.25em] text-gray-500">
-      &copy; {new Date().getFullYear()} <span class="text-gray-300">Mr. Bonzo</span>. 
-      <span class="ml-2 opacity-70" data-i18n="footer.rights">All rights reserved.</span>
+<footer class="mt-24 border-t border-white/10 py-12 px-4">
+  <div class="max-w-7xl mx-auto flex flex-col gap-8 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+    
+    <p class="text-[12px] uppercase tracking-[0.25em] text-gray-500 font-medium">
+      &copy; {new Date().getFullYear()} <span class="text-fuchsia-500/80 font-bold">Mr. Bonzo</span>. 
+      <span class="block sm:inline sm:ml-2 opacity-60" data-i18n="footer.rights">All rights reserved.</span>
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-6 sm:justify-end">
-      <a
-        href={socialLinks.instagram}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
-      >
-        Instagram
-      </a>
-
-      <a
-        href={socialLinks.youtube}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
-      >
-        YouTube
-      </a>
-
-      <a
-        href={socialLinks.email}
-        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
-      >
-        Email
-      </a>
-
-      <a
-        href={socialLinks.tiktok}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
-      >
-        TikTok
-      </a>
-
-      <a
-        href={socialLinks.spotify}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
-      >
-        Spotify
-      </a>
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:justify-end">
+      {[
+        { name: "Instagram", href: socialLinks.instagram },
+        { name: "YouTube", href: socialLinks.youtube },
+        { name: "Email", href: socialLinks.email },
+        { name: "TikTok", href: socialLinks.tiktok },
+        { name: "Spotify", href: socialLinks.spotify }
+      ].map((link) => (
+        <a
+          href={link.href}
+          target={link.name !== "Email" ? "_blank" : undefined}
+          rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+          class="text-[12px] font-black uppercase tracking-[0.2em] text-gray-400 transition-all duration-300 hover:text-fuchsia-400 hover:translate-y-[-2px]"
+        >
+          {link.name}
+        </a>
+      ))}
     </div>
+    
   </div>
 </footer>

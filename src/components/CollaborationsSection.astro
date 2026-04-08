@@ -2,25 +2,30 @@
 import { collaborators } from "../config/collaborations";
 
 // Χρησιμοποιούμε fallback κενό array ([]) αν το collaborators είναι undefined ή null
-// για να αποφύγουμε το σφάλμα κατά το spread (...).
 const safeCollaborators = collaborators || [];
 const marquee = [...safeCollaborators, ...safeCollaborators];
 ---
 
-<section id="collaborations" class="relative mt-16 overflow-hidden rounded-3xl border border-fuchsia-500/30 bg-black/80 px-6 py-8 sm:px-10">
+<section id="collaborations" class="relative mt-20 overflow-hidden rounded-3xl border border-fuchsia-500/30 bg-black/80 px-6 py-12 sm:px-10 sm:py-16">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_50%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_100%_50%,rgba(217,70,239,0.12),transparent_35%)]"></div>
+  
   <div class="relative overflow-hidden">
-    <h3 class="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl" data-i18n="collaborations.title">Collaborations</h3>
-    <p class="mt-2 text-sm text-purple-100/75" data-i18n="collaborations.subtitle">Artists and projects developed through Purple Sound Studio.</p>
+    <h3 class="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl lg:text-5xl" data-i18n="collaborations.title">
+      Collaborations
+    </h3>
+    <p class="mt-4 text-base text-purple-100/75 sm:text-lg" data-i18n="collaborations.subtitle">
+      Artists and projects developed through Purple Sound Studio.
+    </p>
     
-    <div class="mt-6 marquee-track">
+    <div class="mt-10 marquee-track">
       <div class="marquee-content">
         {
           marquee.length > 0 ? (
             marquee.map((artist, idx) => (
-              <span class="inline-flex items-center text-sm font-bold uppercase tracking-[0.18em] text-fuchsia-200 sm:text-base">
+              <span class="inline-flex items-center text-base font-extrabold uppercase tracking-[0.2em] text-fuchsia-200 sm:text-lg lg:text-xl">
                 {artist}
-                {idx < marquee.length - 1 && <span class="mx-5 text-fuchsia-400/80">✦</span>}
+                {/* Increased horizontal margin for clarity during motion */}
+                <span class="mx-8 text-fuchsia-500/60 drop-shadow-[0_0_8px_rgba(217,70,239,0.5)]">✦</span>
               </span>
             ))
           ) : (
@@ -35,22 +40,26 @@ const marquee = [...safeCollaborators, ...safeCollaborators];
 <style>
   .marquee-track {
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    /* Smoother fade on the edges */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    padding: 10px 0;
   }
 
   .marquee-content {
     display: inline-flex;
     white-space: nowrap;
-    animation: brand-ticker 52s linear infinite;
+    /* Adjusted time for better flow with larger text */
+    animation: brand-ticker 40s linear infinite;
   }
 
   @keyframes brand-ticker {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Optional: Pause on hover so people can read a specific name */
+  .marquee-track:hover .marquee-content {
+    animation-play-state: paused;
   }
 </style>

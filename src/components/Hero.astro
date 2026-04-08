@@ -2,11 +2,11 @@
 const logoPath = "/images/logo-main.webp";
 ---
 
-<section class="relative overflow-hidden rounded-3xl border border-fuchsia-500/40 bg-black px-6 py-8 shadow-xl shadow-fuchsia-900/20 sm:px-12 sm:py-12">
+<section class="relative overflow-hidden rounded-3xl border border-fuchsia-500/40 bg-black px-6 py-10 shadow-xl shadow-fuchsia-900/20 sm:px-12 sm:py-16">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,70,239,0.2),_transparent_50%)]"></div>
 
   <div class="relative flex flex-col items-center text-center">
-    <p class="mb-3 text-[9px] font-bold uppercase tracking-[0.4em] text-fuchsia-400/60" data-i18n="hero.label">
+    <p class="mb-4 text-[11px] font-bold uppercase tracking-[0.4em] text-fuchsia-400/60" data-i18n="hero.label">
       Beatmaker Portfolio
     </p>
     
@@ -15,25 +15,25 @@ const logoPath = "/images/logo-main.webp";
       <img 
         src={logoPath} 
         alt="Mr. Bonzo" 
-        class="relative h-auto w-[180px] drop-shadow-[0_0_20px_rgba(217,70,239,0.3)] sm:w-[300px] lg:w-[380px] animate-fade-in"
+        class="relative h-auto w-[180px] drop-shadow-[0_0_20px_rgba(217,70,239,0.3)] sm:w-[320px] lg:w-[400px] animate-fade-in"
       />
     </div>
 
-    <p class="mt-4 max-w-xl text-sm leading-relaxed text-purple-100/60 sm:text-base" data-i18n="hero.subtitle">
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-purple-100/70 sm:text-lg lg:text-xl" data-i18n="hero.subtitle">
       Dark, modern, and aggressive type beats built for artists who want energy and edge.
     </p>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
       <a
         href="#beats"
-        class="group relative overflow-hidden rounded-full bg-white/5 border border-fuchsia-500/30 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-fuchsia-100 backdrop-blur-sm transition-all hover:bg-fuchsia-500/10 hover:border-fuchsia-400 active:scale-95"
+        class="group relative overflow-hidden rounded-full bg-white/5 border border-fuchsia-500/30 px-8 py-3 text-[13px] font-black uppercase tracking-widest text-fuchsia-100 backdrop-blur-sm transition-all hover:bg-fuchsia-500/10 hover:border-fuchsia-400 active:scale-95"
       >
         <span class="relative z-10" data-i18n="hero.browse">Browse Beats</span>
       </a>
       
       <a
         href="#beatstars"
-        class="group relative overflow-hidden rounded-full bg-fuchsia-600 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-fuchsia-500 active:scale-95 shadow-[0_0_20px_rgba(217,70,239,0.4)]"
+        class="group relative overflow-hidden rounded-full bg-fuchsia-600 px-8 py-3 text-[13px] font-black uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-fuchsia-500 active:scale-95 shadow-[0_0_20px_rgba(217,70,239,0.4)]"
       >
         <span class="relative z-10">Featured Player</span>
         <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
@@ -44,13 +44,12 @@ const logoPath = "/images/logo-main.webp";
 
 <style>
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in {
     animation: fadeIn 1s ease-out forwards;
   }
-  /* Ομαλό scroll για όλα τα anchor links */
   html {
     scroll-behavior: smooth;
   }
