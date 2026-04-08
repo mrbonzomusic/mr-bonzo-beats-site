@@ -12,7 +12,6 @@ const { title = "Mr. Bonzo | Type Beats" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 const i18nPayload = { en, el };
 
-// Links
 const discordInvite = "https://discord.gg/hmpCHd4J";
 const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
 const ytArtist = "https://www.youtube.com/@mrbonzomusic";
@@ -26,19 +25,8 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
     <title>{title}</title>
-
-    <meta name="description" content="Official beat store and portfolio of Mr. Bonzo. Dark, modern, and aggressive type beats for artists." />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content="Dark, modern, and aggressive type beats by Mr. Bonzo." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:image" content={`${siteUrl}images/logo-main.webp`} />
-    <meta name="twitter:card" content="summary_large_image" />
-
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   </head>
 
   <body class="min-h-screen antialiased bg-black text-white">
@@ -46,51 +34,41 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
       
       <header class="sticky top-2 z-50 mb-4">
         <div class="rounded-full border border-fuchsia-500/20 bg-black/80 backdrop-blur-md px-4 py-1.5 sm:px-6">
-          <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center justify-between gap-2 sm:gap-4">
             
             <a href="/" class="flex-shrink-0 transition hover:scale-105">
-              <img
-                src={logoPath}
-                alt="Mr. Bonzo logo"
-                class="h-[28px] w-auto drop-shadow-[0_0:10px_rgba(217,70,239,0.3)] sm:h-[38px]"
-              />
+              <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[32px]" />
             </a>
 
-            <nav class="flex items-center gap-x-3 sm:gap-x-5 lg:gap-x-8">
-              <a href="/" class="hidden md:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.home">Home</a>
-              
-              <a href="#beats" class="text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
-              
-              <a href="#beatstars" class="hidden sm:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Featured Player</a>
+            <nav class="flex items-center gap-x-2.5 md:gap-x-4 lg:gap-x-5 xl:gap-x-7">
+              <a href="/" class="hidden xl:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Home</a>
+              <a href="#beats" class="text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Beats</a>
+              <a href="#beatstars" class="hidden md:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Player</a>
               
               <div class="relative group cursor-pointer">
                 <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-red-500/80 transition hover:text-red-500 flex items-center gap-1">
-                  YouTube
-                  <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+                  YT <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
                 </span>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-36 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-">
+                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-36 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-">
                   <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
                   <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={pond5Link} target="_blank" class="hidden xs:block text-[9px] font-bold uppercase tracking-[0.2em] text-orange-500/80 transition hover:text-orange-500">Pond5</a>
-              
-              <a href={socialLinks.spotify} target="_blank" class="text-[9px] font-bold uppercase tracking-[0.2em] text-green-500/80 transition hover:text-green-500">Spotify</a>
+              <a href={pond5Link} target="_blank" class="hidden lg:block text-[9px] font-bold uppercase tracking-[0.2em] text-orange-500/80 transition hover:text-orange-500">Pond5</a>
+              <a href={socialLinks.spotify} target="_blank" class="hidden xs:block text-[9px] font-bold uppercase tracking-[0.2em] text-green-500/80 transition hover:text-green-500">Spotify</a>
+              <a href={discordInvite} target="_blank" class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#5865F2] transition hover:text-[#7289da]">Discord</a>
 
-              <a href={discordInvite} target="_blank" class="flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#5865F2] transition hover:text-[#7289da]">
-                Discord
-              </a>
+              <a href="#about" class="hidden sm:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">About</a>
+              <a href="#footer" class="hidden sm:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Contact</a>
             </nav>
 
-            <div class="flex items-center gap-3">
-               <div class="hidden xs:flex items-center gap-1.5 font-bold text-[8px] tracking-widest border-r border-fuchsia-500/20 pr-3">
+            <div class="flex items-center gap-2 sm:gap-3">
+               <div class="hidden xs:flex items-center gap-1 font-bold text-[8px] border-r border-fuchsia-500/20 pr-2">
                   <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EN</button>
-                  <span class="text-fuchsia-500/20">/</span>
                   <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EL</button>
                </div>
-               
-               <a href={beatstarsLinks.profile} target="_blank" class="flex-shrink-0 rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-300 transition hover:bg-fuchsia-500 hover:text-white" data-i18n="nav.store">Store</a>
+               <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition">Store</a>
             </div>
 
           </div>
@@ -103,29 +81,23 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
     <script is:inline define:vars={{ i18nPayload }}>
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
-      
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
         localStorage.setItem("site-lang", lang);
-        
         document.querySelectorAll("[data-i18n]").forEach((node) => {
           const key = node.getAttribute("data-i18n");
           const value = key ? getByPath(dict, key) : null;
           if (typeof value === "string") node.textContent = value;
         });
-        
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
-          const isActive = btn.getAttribute("data-lang-switch") === lang;
-          btn.setAttribute("data-active", isActive ? "true" : "false");
+          btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
       };
-
       const initial = localStorage.getItem("site-lang") || "en";
       applyLanguage(initial);
-      
       document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
-        btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch") || "en"));
+        btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
       });
     </script>
   </body>
