@@ -1,26 +1,57 @@
-<section class="relative overflow-hidden rounded-3xl border border-fuchsia-500/50 bg-black px-8 py-16 shadow-2xl shadow-fuchsia-700/25 sm:px-12 sm:py-24">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,70,239,0.25),_transparent_55%)]"></div>
-  <div class="relative">
-    <p class="mb-4 text-sm uppercase tracking-[0.3em] text-purple-300/80" data-i18n="hero.label">Beatmaker Portfolio</p>
-    <h1 class="text-5xl font-black uppercase tracking-tight text-white sm:text-7xl lg:text-8xl">Mr. Bonzo Beats</h1>
-    <p class="mt-6 max-w-2xl text-base text-purple-100/80 sm:text-lg" data-i18n="hero.subtitle">
+---
+const logoPath = "/images/logo-main.webp";
+---
+
+<section class="relative overflow-hidden rounded-3xl border border-fuchsia-500/40 bg-black px-6 py-8 shadow-xl shadow-fuchsia-900/20 sm:px-12 sm:py-12">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,70,239,0.2),_transparent_50%)]"></div>
+
+  <div class="relative flex flex-col items-center text-center">
+    <p class="mb-3 text-[9px] font-bold uppercase tracking-[0.4em] text-fuchsia-400/60" data-i18n="hero.label">
+      Beatmaker Portfolio
+    </p>
+    
+    <div class="relative group">
+      <div class="absolute inset-0 scale-100 bg-fuchsia-500/15 blur-2xl rounded-full"></div>
+      <img 
+        src={logoPath} 
+        alt="Mr. Bonzo" 
+        class="relative h-auto w-[180px] drop-shadow-[0_0_20px_rgba(217,70,239,0.3)] sm:w-[300px] lg:w-[380px] animate-fade-in"
+      />
+    </div>
+
+    <p class="mt-4 max-w-xl text-sm leading-relaxed text-purple-100/60 sm:text-base" data-i18n="hero.subtitle">
       Dark, modern, and aggressive type beats built for artists who want energy and edge.
     </p>
-    <div class="mt-8 flex flex-wrap gap-4">
+
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
       <a
-        href="#beatstars"
-        class="rounded-full border border-fuchsia-400/70 bg-fuchsia-600/90 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-[0_0_24px_rgba(217,70,239,0.5)] transition hover:bg-fuchsia-500"
-        data-i18n="hero.browse"
+        href="#beats"
+        class="group relative overflow-hidden rounded-full bg-white/5 border border-fuchsia-500/30 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-fuchsia-100 backdrop-blur-sm transition-all hover:bg-fuchsia-500/10 hover:border-fuchsia-400 active:scale-95"
       >
-        Browse Beats
+        <span class="relative z-10" data-i18n="hero.browse">Browse Beats</span>
       </a>
+      
       <a
         href="#beatstars"
-        class="rounded-full border border-purple-500/40 bg-black/50 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-purple-100 transition hover:border-purple-300"
-        data-i18n="hero.featured"
+        class="group relative overflow-hidden rounded-full bg-fuchsia-600 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-fuchsia-500 active:scale-95 shadow-[0_0_20px_rgba(217,70,239,0.4)]"
       >
-        Featured Player
+        <span class="relative z-10">Featured Player</span>
+        <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  /* Ομαλό scroll για όλα τα anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

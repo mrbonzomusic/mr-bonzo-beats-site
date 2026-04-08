@@ -18,7 +18,8 @@ const en = {
     title: "YouTube Playlists",
     viewAll: "View All",
     open: "Open",
-    shop: "Shop on Beatstars"
+    shop: "Shop on Beatstars",
+    free: "Free Download" // Προστέθηκε αυτό
   },
   about: {
     label: "About Mr. Bonzo",
@@ -31,7 +32,8 @@ const en = {
   },
   collaborations: {
     title: "Collaborations",
-    subtitle: "Artists and projects developed through Purple Sound Studio."
+    subtitle: "Artists and projects developed through Purple Sound Studio.",
+    items: [] // Προστέθηκε κενή λίστα για να μην σκάει το .length
   },
   releases: {
     title: "Official Releases",
@@ -43,7 +45,8 @@ const en = {
   },
   services: {
     title: "Professional Services",
-    subtitle: "Built for artists, labels, and audiovisual projects."
+    subtitle: "Built for artists, labels, and audiovisual projects.",
+    items: [] // Προστέθηκε κενή λίστα για να μην σκάει το .length
   },
   footer: {
     rights: "All rights reserved.",

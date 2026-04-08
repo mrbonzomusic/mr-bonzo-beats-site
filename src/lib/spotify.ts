@@ -1,49 +1,57 @@
-const client_id = import.meta.env.SPOTIFY_CLIENT_ID;
-const client_secret = import.meta.env.SPOTIFY_CLIENT_SECRET;
-const artist_id = import.meta.env.SPOTIFY_ARTIST_ID;
-
-async function getAccessToken() {
+export async function getArtistAlbums({ clientId, clientSecret, artistId, fallbackCover }) {
   try {
-    const response = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
+    if (!clientId || !clientSecret || !artistId) {
+      throw new Error("Missing Spotify Credentials");
+    }
+
+    // 1. Λήψη Token
+    const authResponse = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
       headers: {
-        'Authorization': 'Basic ' + btoa(client_id + ':' + client_secret),
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
       },
-      body: 'grant_type=client_credentials',
+      body: "grant_type=client_credentials",
     });
-    const data = await response.json();
-    return data.access_token;
-  } catch (error) {
-    console.error("Spotify Auth Error:", error);
-    return null;
-  }
-}
 
-export async function getArtistAlbums() {
-  try {
-    const access_token = await getAccessToken();
-    if (!access_token) return [];
+    if (!authResponse.ok) {
+      const errorText = await authResponse.text();
+      throw new Error(`Auth Failed: ${authResponse.status} - ${errorText}`);
+    }
 
-    const response = await fetch(
-      `https://api.spotify.com/v1/artists/${artist_id}/albums?include_groups=album,single&limit=20&market=GR`,
+    const authData = await authResponse.json();
+    const access_token = authData.access_token;
+
+    // 2. Λήψη Albums/Singles
+    const artistResponse = await fetch(
+      `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&limit=20&market=GR`,
       {
-        headers: { 'Authorization': `Bearer ${access_token}` },
+        headers: { Authorization: `Bearer ${access_token}` },
       }
     );
-    const data = await response.json();
-    
-    if (!data.items) return [];
 
-    const seen = new Set();
-    return data.items.filter((item: any) => {
-      const itemName = item.name.toLowerCase();
-      const isDuplicate = seen.has(itemName);
-      seen.add(itemName);
-      return !isDuplicate;
-    });
+    if (!artistResponse.ok) {
+      const errorText = await artistResponse.text();
+      throw new Error(`Artist Fetch Failed: ${artistResponse.status} - ${errorText}`);
+    }
+
+    const data = await artistResponse.json();
+
+    return {
+      status: "live",
+      releases: data.items.map((item) => ({
+        title: item.name,
+        year: item.release_date.split("-"),
+        cover: item.images && item.images.length > 0 ? item.images.url : fallbackCover,
+        spotify: item.external_urls.spotify,
+      })),
+    };
   } catch (error) {
-    console.error('Spotify Fetch Error:', error);
-    return [];
+    console.error("--- SPOTIFY API CRITICAL ERROR ---");
+    console.error(error.message);
+    return {
+      status: "error",
+      releases: [],
+    };
   }
 }

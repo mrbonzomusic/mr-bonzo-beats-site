@@ -4,20 +4,20 @@ const channelPlaylistsUrl = "https://www.youtube.com/@mrbonzobeatz/playlists";
 const playlists = [
   {
     title: "Boom Bap Beats",
-    href: "https://www.youtube.com/watch?v=7j096H_mMnc&list=PLMdNnt6p6RrEdkjzDdS12hUJNx8ENBul6",
-    image: "/images/Boom%20Bap%20Beats.png",
+    href: "https://www.youtube.com/playlist?list=PLMdNnt6p6RrEdkjzDdS12hUJNx8ENBul6",
+    image: "/images/Boom-Bap-Beats.webp",
     beatstarsHref: "https://www.beatstars.com/playlists/5350129"
   },
   {
     title: "Trap Beats",
-    href: "https://www.youtube.com/watch?v=b6-ThC1GU2Q&list=PLMdNnt6p6RrEotLVDWzYhCLVH_fG3kn93",
-    image: "/images/Trap%20Beats.png",
+    href: "https://www.youtube.com/playlist?list=PLMdNnt6p6RrEotLVDWzYhCLVH_fG3kn93",
+    image: "/images/Trap-Beats.webp",
     beatstarsHref: "https://www.beatstars.com/playlists/5319147"
   },
   {
     title: "Free Beats",
-    href: "https://www.youtube.com/watch?v=kPGXHFoG4LI&list=PLMdNnt6p6RrEt5bZVQd1bZZ21DUj7LvyW",
-    image: "/images/Free%20Beats.png",
+    href: "https://www.youtube.com/playlist?list=PLMdNnt6p6RrEt5bZVQd1bZZ21DUj7LvyW",
+    image: "/images/Free-Beats.webp",
     beatstarsHref: "https://www.beatstars.com/playlists/6148560"
   }
 ];
@@ -67,9 +67,8 @@ const playlists = [
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex rounded-full border border-fuchsia-400/70 bg-fuchsia-600/85 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_14px_rgba(217,70,239,0.45)] transition hover:bg-fuchsia-500"
-              data-i18n="playlists.shop"
             >
-              Shop on Beatstars
+              {playlist.title === "Free Beats" ? "Free Download" : "Shop on Beatstars"}
             </a>
           </div>
         </article>
