@@ -4,7 +4,7 @@ import { beatstarsLinks } from "../config/links";
 const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
 ---
 
-<section id="player" class="px-2 sm:px-4 mt-12" style="scroll-margin-top: 120px;">
+<section id="player" class="scroll-mt-24 px-2 sm:px-4">
   <div class="relative mx-auto max-w-[98%] lg:max-w-7xl">
     
     <div class="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black p-0.5 shadow-2xl">
@@ -12,8 +12,8 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
         src={playerUrl}
         width="100%"
         title="Mr. Bonzo Beatstars Player"
-        /* Το 200px δίνει ακόμα περισσότερο αέρα για να φαίνεται ολόκληρος ο player */
-        style="height: calc(100dvh - 200px); min-height: 500px; border:none; border-radius: 20px;"
+        /* Το 180px θα του δώσει τον αέρα που λείπει */
+        style="height: calc(100dvh - 180px); min-height: 500px; border:none; border-radius: 20px;"
         loading="lazy"
         class="bg-black w-full"
         allow="autoplay"
@@ -23,7 +23,7 @@ const playerUrl = "https://www.beatstars.com/player/?storeId=133234";
     </div>
   </div>
 
-  <p class="mt-4 text-center text-[8px] tracking-[0.2em] text-white/10 uppercase font-medium">
+  <p class="mt-2 text-center text-[8px] tracking-[0.2em] text-white/10 uppercase font-medium">
     Secure Checkout • Powered by Beatstars
   </p>
 </section>
