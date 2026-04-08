@@ -12,12 +12,11 @@ const { title = "Mr. Bonzo | Type Beats" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 const i18nPayload = { en, el };
 
-const discordInvite = "https://discord.gg/hmpCHd4J";
+// Αυτά καλό είναι να μεταφερθούν στο config/links.ts κάποια στιγμή για να είναι όλα μαζί
+const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J"; 
 const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
 const ytArtist = "https://www.youtube.com/@mrbonzomusic";
 const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
-
-const siteUrl = "https://mrbonzo-beats.pages.dev/"; 
 ---
 
 <!doctype html>
@@ -41,35 +40,36 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
             </a>
 
             <nav class="flex items-center gap-x-2 md:gap-x-3 lg:gap-x-5">
-              <a href="/" class="hidden xl:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Home</a>
-              <a href="#beats" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Beats</a>
-              <a href="#beatstars" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Player</a>
+              <a href="/" class="hidden xl:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.home">Home</a>
+              <a href="#beats" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
+              <a href="#beatstars" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
               
-              <div class="relative group cursor-pointer">
+              <div class="relative group cursor-pointer text-left">
                 <span class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5">
                   YouTube <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
                 </span>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-">
+                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-50">
                   <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
                   <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={socialLinks.spotify} target="_blank" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-green-500/80 transition hover:text-green-500">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-[#5865F2] transition hover:text-[#7289da]">Discord</a>
+              <a href={socialLinks.spotify} target="_blank" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-green-500/80 transition hover:text-green-500" data-i18n="nav.spotify">Spotify</a>
+              <a href={discordInvite} target="_blank" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-[#5865F2] transition hover:text-[#7289da]" data-i18n="nav.discord">Discord</a>
 
               <a href={pond5Link} target="_blank" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-orange-500/80 transition hover:text-orange-500">Pond5</a>
 
-              <a href="#about" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">About</a>
-              <a href="#footer" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Contact</a>
+              <a href="#about" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="about.label">About</a>
+              
+              <a href="#contact" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="contact.label">Contact</a>
             </nav>
 
             <div class="flex items-center gap-2">
                <div class="hidden xs:flex items-center gap-1 font-bold text-[8px] border-r border-fuchsia-500/20 pr-2">
-                  <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EN</button>
-                  <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EL</button>
+                  <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EN</button>
+                  <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EL</button>
                </div>
-               <a href={beatstarsLinks.profile} target="_blank" class="flex-shrink-0 rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition">Store</a>
+               <a href={beatstarsLinks.profile} target="_blank" class="flex-shrink-0 rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition" data-i18n="nav.store">Store</a>
             </div>
 
           </div>
@@ -82,21 +82,29 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
     <script is:inline define:vars={{ i18nPayload }}>
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+      
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
         localStorage.setItem("site-lang", lang);
+        
         document.querySelectorAll("[data-i18n]").forEach((node) => {
           const key = node.getAttribute("data-i18n");
           const value = key ? getByPath(dict, key) : null;
-          if (typeof value === "string") node.textContent = value;
+          if (typeof value === "string") {
+            // Χρησιμοποιούμε innerHTML αντί για textContent για να δουλεύουν τα <span> στα titles
+            node.innerHTML = value;
+          }
         });
+        
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
       };
+
       const initial = localStorage.getItem("site-lang") || "en";
       applyLanguage(initial);
+      
       document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
         btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
       });
