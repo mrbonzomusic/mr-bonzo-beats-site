@@ -46,10 +46,16 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
               <a href="#player" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
               
               <div class="relative group cursor-pointer text-left">
-                <span class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5">
-                  YouTube <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
-                </span>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-50">
+                <button 
+                  type="button"
+                  class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5 outline-none focus:outline-none"
+                >
+                  YouTube 
+                  <svg class="h-2 w-2 transition-transform group-focus-within:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+                <div class="invisible group-hover:visible group-focus-within:visible opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-50">
                   <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
                   <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
