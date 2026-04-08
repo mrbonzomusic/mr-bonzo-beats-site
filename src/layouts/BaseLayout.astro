@@ -33,42 +33,44 @@ const siteUrl = "https://mrbonzo-beats.pages.dev/";
     <main class="mx-auto max-w-7xl px-4 pb-6 pt-0 sm:px-6 lg:px-8">
       
       <header class="sticky top-2 z-50 mb-4">
-        <div class="rounded-full border border-fuchsia-500/20 bg-black/80 backdrop-blur-md px-4 py-1.5 sm:px-6">
-          <div class="flex items-center justify-between gap-2 sm:gap-4">
+        <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-3 py-1.5 sm:px-6">
+          <div class="flex items-center justify-between gap-1 sm:gap-4">
             
             <a href="/" class="flex-shrink-0 transition hover:scale-105">
-              <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[32px]" />
+              <img src={logoPath} alt="Logo" class="h-[20px] w-auto sm:h-[30px] md:h-[35px]" />
             </a>
 
-            <nav class="flex items-center gap-x-2.5 md:gap-x-4 lg:gap-x-5 xl:gap-x-7">
-              <a href="/" class="hidden xl:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Home</a>
-              <a href="#beats" class="text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Beats</a>
-              <a href="#beatstars" class="hidden md:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Player</a>
+            <nav class="flex items-center gap-x-2 md:gap-x-3 lg:gap-x-5">
+              <a href="/" class="hidden xl:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Home</a>
+              <a href="#beats" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Beats</a>
+              <a href="#beatstars" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400 text-nowrap">Player</a>
               
               <div class="relative group cursor-pointer">
-                <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-red-500/80 transition hover:text-red-500 flex items-center gap-1">
-                  YT <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+                <span class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5">
+                  YouTube <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
                 </span>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-36 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-">
+                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-">
                   <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
                   <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={pond5Link} target="_blank" class="hidden lg:block text-[9px] font-bold uppercase tracking-[0.2em] text-orange-500/80 transition hover:text-orange-500">Pond5</a>
-              <a href={socialLinks.spotify} target="_blank" class="hidden xs:block text-[9px] font-bold uppercase tracking-[0.2em] text-green-500/80 transition hover:text-green-500">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#5865F2] transition hover:text-[#7289da]">Discord</a>
+              <a href={pond5Link} target="_blank" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-orange-500/80 transition hover:text-orange-500">Pond5</a>
+              
+              <a href={socialLinks.spotify} target="_blank" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-green-500/80 transition hover:text-green-500">Spotify</a>
 
-              <a href="#about" class="hidden sm:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">About</a>
-              <a href="#footer" class="hidden sm:block text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-100/70 transition hover:text-fuchsia-400">Contact</a>
+              <a href={discordInvite} target="_blank" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-[#5865F2] transition hover:text-[#7289da]">Discord</a>
+
+              <a href="#about" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">About</a>
+              <a href="#footer" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400">Contact</a>
             </nav>
 
-            <div class="flex items-center gap-2 sm:gap-3">
+            <div class="flex items-center gap-2">
                <div class="hidden xs:flex items-center gap-1 font-bold text-[8px] border-r border-fuchsia-500/20 pr-2">
                   <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EN</button>
                   <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400">EL</button>
                </div>
-               <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition">Store</a>
+               <a href={beatstarsLinks.profile} target="_blank" class="flex-shrink-0 rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition">Store</a>
             </div>
 
           </div>
