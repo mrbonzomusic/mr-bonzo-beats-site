@@ -30,60 +30,56 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
   <body class="min-h-screen antialiased bg-black text-white">
     <main class="mx-auto max-w-7xl px-4 pb-6 pt-0 sm:px-6 lg:px-8">
       
-      <header class="sticky top-2 z- mb-4">
-        <div class="rounded-3xl sm:rounded-full border border-fuchsia-500/20 bg-black/95 backdrop-blur-md px-4 py-2">
-          <div class="flex items-center justify-between">
+      <header class="sticky top-2 z-50 mb-4">
+        <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-3 py-1.5 sm:px-6">
+          <div class="flex items-center justify-between gap-1 sm:gap-4">
             
-            <a href="/" class="z- flex-shrink-0 transition hover:scale-105">
-              <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[30px]" />
+            <a href="/" class="flex-shrink-0 transition hover:scale-105">
+              <img src={logoPath} alt="Logo" class="h-[20px] w-auto sm:h-[30px] md:h-[35px]" />
             </a>
 
-            <nav class="hidden lg:flex items-center gap-x-5">
-              <a href="#beats" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
-              <a href="#drumkits" class="text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.kits">Kits</a>
+            <nav class="flex items-center gap-x-2 md:gap-x-3 lg:gap-x-5">
+              <a href="#beats" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.beats">Beats</a>
               
-              <div class="relative group">
-                <button type="button" class="text-[9px] font-bold uppercase tracking-widest text-red-500/80 flex items-center gap-0.5 outline-none">
-                  YouTube <svg class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
+              <a href="#drumkits" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.kits">Kits</a>
+              
+              <a href="#player" class="hidden md:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="nav.player">Player</a>
+              
+              <div class="relative group cursor-pointer text-left">
+                <button 
+                  type="button"
+                  class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-red-500/80 transition hover:text-red-500 flex items-center gap-0.5 outline-none focus:outline-none"
+                >
+                  YouTube 
+                  <svg class="h-2 w-2 transition-transform group-focus-within:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
+                  </svg>
                 </button>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 mt-2 w-32 rounded-xl border border-white/10 bg-black p-1 shadow-2xl transition-all">
-                  <a href={ytArtist} target="_blank" class="block px-3 py-2 text-[8px] font-bold text-white hover:bg-red-600/20">Artist</a>
-                  <a href={ytBeats} target="_blank" class="block px-3 py-2 text-[8px] font-bold text-white hover:bg-red-600/20 border-t border-white/5">Beats</a>
+                <div class="invisible group-hover:visible group-focus-within:visible opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 absolute top-full left-0 mt-2 w-40 rounded-xl border border-white/10 bg-black/95 p-1 shadow-2xl transition-all z-50">
+                  <a href={ytArtist} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20">Artist Channel</a>
+                  <a href={ytBeats} target="_blank" class="block rounded-lg px-3 py-2 text-[8px] font-bold uppercase text-white hover:bg-red-600/20 border-t border-white/5">Beats Channel</a>
                 </div>
               </div>
 
-              <a href={socialLinks.spotify} target="_blank" class="text-[9px] font-bold uppercase text-green-500/80 hover:text-green-500">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[9px] font-bold uppercase text-[#5865F2] hover:text-[#7289da]">Discord</a>
-              <a href="#contact" class="text-[9px] font-bold uppercase text-fuchsia-100/70 hover:text-fuchsia-400" data-i18n="contact.label">Contact</a>
+              <a href={socialLinks.spotify} target="_blank" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-green-500/80 transition hover:text-green-500" data-i18n="nav.spotify">Spotify</a>
+              <a href={discordInvite} target="_blank" class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-[#5865F2] transition hover:text-[#7289da]" data-i18n="nav.discord">Discord</a>
+
+              <a href={pond5Link} target="_blank" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-orange-500/80 transition hover:text-orange-500">Pond5</a>
+
+              <a href="#about" class="hidden lg:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="about.label">About</a>
+              
+              <a href="#contact" class="hidden sm:block text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-100/70 transition hover:text-fuchsia-400" data-i18n="contact.label">Contact</a>
             </nav>
 
-            <div class="flex items-center gap-3">
-               <div class="hidden xs:flex items-center font-bold text-[8px] border-r border-fuchsia-500/20 pr-3">
+            <div class="flex items-center gap-2">
+               <div class="hidden xs:flex items-center gap-1 font-bold text-[8px] border-r border-fuchsia-500/20 pr-2">
                   <button type="button" data-lang-switch="en" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EN</button>
                   <button type="button" data-lang-switch="el" class="text-fuchsia-200/40 transition data-[active=true]:text-fuchsia-400 px-1">EL</button>
                </div>
-
-               <button id="mobile-menu-button" class="lg:hidden text-fuchsia-400 focus:outline-none p-1">
-                 <svg id="burger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
-                 <svg id="close-icon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-               </button>
-
-               <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-4 py-1.5 text-[9px] font-black uppercase text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition">Store</a>
+               <a href={beatstarsLinks.profile} target="_blank" class="flex-shrink-0 rounded-full bg-fuchsia-600/20 border border-fuchsia-500/30 px-3 py-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-fuchsia-300 hover:bg-fuchsia-500 hover:text-white transition" data-i18n="nav.store">Store</a>
             </div>
-          </div>
 
-          <div id="mobile-menu" class="hidden lg:hidden flex-col gap-4 pt-4 pb-2 border-t border-white/5 mt-2 transition-all">
-            <div class="grid grid-cols-2 gap-4">
-              <a href="#beats" class="text-[10px] font-bold uppercase text-gray-400">Beats</a>
-              <a href="#drumkits" class="text-[10px] font-bold uppercase text-gray-400">Drum Kits</a>
-              <a href={ytArtist} target="_blank" class="text-[10px] font-bold uppercase text-red-500">YT Artist</a>
-              <a href={ytBeats} target="_blank" class="text-[10px] font-bold uppercase text-red-500">YT Beats</a>
-              <a href={socialLinks.spotify} target="_blank" class="text-[10px] font-bold uppercase text-green-500">Spotify</a>
-              <a href={discordInvite} target="_blank" class="text-[10px] font-bold uppercase text-[#5865F2]">Discord</a>
-              <a href="#contact" class="text-[10px] font-bold uppercase text-fuchsia-400">Contact</a>
-            </div>
           </div>
-
         </div>
       </header>
 
@@ -91,56 +87,32 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
     </main>
 
     <script is:inline define:vars={{ i18nPayload }}>
-      // Language Logic
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+      
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
         localStorage.setItem("site-lang", lang);
+        
         document.querySelectorAll("[data-i18n]").forEach((node) => {
           const key = node.getAttribute("data-i18n");
           const value = key ? getByPath(dict, key) : null;
-          if (typeof value === "string") node.innerHTML = value;
+          if (typeof value === "string") {
+            node.innerHTML = value;
+          }
         });
+        
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
       };
+
       const initial = localStorage.getItem("site-lang") || "en";
       applyLanguage(initial);
+      
       document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
         btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
-      });
-
-      // Mobile Menu Logic
-      const menuBtn = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const burgerIcon = document.getElementById('burger-icon');
-      const closeIcon = document.getElementById('close-icon');
-
-      menuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-        if (isHidden) {
-          mobileMenu.classList.remove('hidden');
-          mobileMenu.classList.add('flex');
-          burgerIcon.classList.add('hidden');
-          closeIcon.classList.remove('hidden');
-        } else {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.classList.remove('flex');
-          burgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-        }
-      });
-
-      // Κλείσιμο μενού όταν πατάς ένα link
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          burgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-        });
       });
     </script>
   </body>
