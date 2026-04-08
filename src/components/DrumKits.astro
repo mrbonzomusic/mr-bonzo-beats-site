@@ -5,8 +5,8 @@ const drumKits = [
     title: "MR. BONZO - FREE KIT",
     description: "A professional collection of high-quality sounds to level up your production. Includes signature kicks, snares, and perks used in my beats.",
     price: "FREE",
-    // Το απευθείας link της εικόνας από τη Beatstars
-    image: "https://main.v2.beatstars.com/content/media/object/sound-kit/153315/image/1715694205/600", 
+    // Χρησιμοποιούμε το Cloudfront link της Beatstars που είναι πιο συμβατό
+    image: "https://d1on02p85m3qa9.cloudfront.net/content/media/object/sound-kit/153315/image/1715694205/600", 
     link: "https://www.beatstars.com/mrbonzobeats/sound-kits/153315"
   }
 ];
@@ -36,6 +36,7 @@ const drumKits = [
                src={kit.image} 
                alt={kit.title} 
                class="relative h-full w-full object-cover rounded-2xl border border-white/10 shadow-2xl transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2" 
+               onerror="this.src='/images/logo-main.webp'; this.style.padding='20px';"
              />
           </div>
           
