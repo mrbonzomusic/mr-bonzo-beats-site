@@ -6,7 +6,8 @@ const el = {
     spotify: "Spotify",
     youtube: "YouTube",
     tiktok: "TikTok",
-    store: "Store"
+    store: "Store",
+    discord: "Discord" // Προστέθηκε
   },
   hero: {
     label: "Πορτφόλιο Beatmaker",
@@ -19,7 +20,7 @@ const el = {
     viewAll: "Όλα",
     open: "Άνοιγμα",
     shop: "Shop on Beatstars",
-    free: "Δωρεάν Download" // Προστέθηκε
+    free: "Δωρεάν Download"
   },
   about: {
     label: "Σχετικά με τον Mr. Bonzo",
@@ -33,7 +34,7 @@ const el = {
   collaborations: {
     title: "Συνεργασίες",
     subtitle: "Καλλιτέχνες και projects που αναπτύχθηκαν μέσω του Purple Sound Studio.",
-    items: [] // Προστέθηκε για να μην σκάει το .length
+    items: [] 
   },
   releases: {
     title: "Επίσημες Κυκλοφορίες",
@@ -46,7 +47,7 @@ const el = {
   services: {
     title: "Επαγγελματικές Υπηρεσίες",
     subtitle: "Για artists, labels και audiovisual projects.",
-    items: [] // Προστέθηκε για να μην σκάει το .length
+    items: [] 
   },
   footer: {
     rights: "Με επιφύλαξη παντός δικαιώματος.",
