@@ -2,6 +2,7 @@ const el = {
   nav: {
     home: "Αρχική",
     beats: "Beats",
+    kits: "Kits", // Προστέθηκε για το μενού
     player: "Player",
     spotify: "Spotify",
     youtube: "YouTube",
@@ -15,6 +16,12 @@ const el = {
     browse: "Άκου Beats",
     featured: "Featured Player"
   },
+  drumkits: { // Νέο section για το Drum Kits component
+    title: "SOUND <span class='text-fuchsia-500'>KITS</span>",
+    description: "Επαγγελματικοί ήχοι για να απογειώσεις την παραγωγή σου.",
+    freeLabel: "ΔΩΡΕΑΝ DOWNLOAD",
+    getBtn: "Λήψη Kit"
+  },
   playlists: {
     title: "YouTube Playlists",
     viewAll: "Όλα",
@@ -23,7 +30,7 @@ const el = {
     free: "Δωρεάν Download"
   },
   about: {
-    label: "About", // Εδώ άλλαξε από "Ο Καλλιτέχνης" σε "About"
+    label: "About",
     title: "Ο Αρχιτέκτονας της Ενέργειας",
     bio: "Ο Αλέξανδρος Πιλάτος είναι music producer και audio engineer στην Αθήνα, ενεργός από το 2003. Είναι ο ιδρυτής του Purple Sound Studio (2007). Ο ήχος του συνδυάζει Boom Bap, Lofi, Trap, Dnb, Reggae, Breakbeat, Electronica και Progressive House.",
     beatmaker: "Beatmaker",
@@ -40,7 +47,7 @@ const el = {
     contactBtn: "Επικοινωνία για Customs"
   },
   contact: {
-    label: "Contact", // Εδώ άλλαξε από "Επικοινωνία" σε "Contact"
+    label: "Contact",
     title: "Ας Δημιουργήσουμε <span class='text-fuchsia-500'>Ιστορία</span>",
     subtitle: "Για custom beats, μίξη & mastering ή επιχειρηματικές προτάσεις, επικοινωνήστε μαζί μου μέσω της πλατφόρμας που προτιμάτε."
   },

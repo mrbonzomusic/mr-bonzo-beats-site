@@ -2,6 +2,7 @@ const en = {
   nav: {
     home: "Home",
     beats: "Beats",
+    kits: "Kits", // Προστέθηκε
     player: "Player",
     spotify: "Spotify",
     youtube: "YouTube",
@@ -15,6 +16,12 @@ const en = {
     browse: "Browse Beats",
     featured: "Featured Player"
   },
+  drumkits: { // Προστέθηκε για να ταιριάζει με το el.ts
+    title: "SOUND <span class='text-fuchsia-500'>KITS</span>",
+    description: "Professional sound collections to level up your production.",
+    freeLabel: "FREE DOWNLOAD",
+    getBtn: "Get Kit"
+  },
   playlists: {
     title: "YouTube Playlists",
     viewAll: "View All",
@@ -23,7 +30,7 @@ const en = {
     free: "Free Download"
   },
   about: {
-    label: "About", // Άλλαξε από "The Artist" σε "About"
+    label: "About",
     title: "The Architect of Energy",
     bio: "Alexandros Pilatos is a music producer/audio engineer in Athens, active since 2003. Founder of Purple Sound Studio (2007). His signature sound blends Boom Bap, Lofi, Trap, Dnb, Reggae, Breakbeat, Electronica, and Progressive House.",
     beatmaker: "Beatmaker",
@@ -40,7 +47,7 @@ const en = {
     contactBtn: "Contact for Customs"
   },
   contact: {
-    label: "Contact", // Άλλαξε από "Get In Touch" σε "Contact"
+    label: "Contact",
     title: "Let's Create <span class='text-fuchsia-500'>History</span>",
     subtitle: "For custom beats, mixing & mastering, or business inquiries, reach out through your preferred platform."
   },
