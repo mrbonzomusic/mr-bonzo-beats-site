@@ -2,32 +2,45 @@
 import { socialLinks } from "../config/links";
 ---
 
-<footer id="contact" class="mt-20 border-t border-purple-700/25 pt-8">
-  <div class="flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-    <p class="text-xs uppercase tracking-[0.2em] text-purple-300/75">
-      Copyright © {new Date().getFullYear()} Mr. Bonzo. <span data-i18n="footer.rights">All rights reserved.</span>
+<footer class="mt-20 border-t border-white/5 py-10">
+  <div class="flex flex-col gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+    <p class="text-[10px] uppercase tracking-[0.25em] text-gray-500">
+      &copy; {new Date().getFullYear()} <span class="text-gray-300">Mr. Bonzo</span>. 
+      <span class="ml-2 opacity-70" data-i18n="footer.rights">All rights reserved.</span>
     </p>
-    <div class="flex flex-wrap items-center justify-center gap-5 sm:justify-end">
+
+    <div class="flex flex-wrap items-center justify-center gap-6 sm:justify-end">
       <a
         href={socialLinks.instagram}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300"
-        data-i18n="footer.instagram"
+        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
       >
-        Instagram (@mrbonzobeats)
+        Instagram
       </a>
       <a
         href={socialLinks.youtube}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300"
-        data-i18n="nav.youtube"
+        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
       >
         YouTube
       </a>
-      <a href={socialLinks.email} class="text-xs font-bold uppercase tracking-[0.2em] text-fuchsia-200 transition hover:text-fuchsia-300">
-        mrbonzomusic@gmail.com
+      <a
+        href={socialLinks.tiktok}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
+      >
+        TikTok
+      </a>
+      <a
+        href={socialLinks.spotify}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 transition hover:text-fuchsia-400"
+      >
+        Spotify
       </a>
     </div>
   </div>
