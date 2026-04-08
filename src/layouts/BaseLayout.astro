@@ -30,8 +30,8 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
   <body class="min-h-screen antialiased bg-black text-white">
     <main class="mx-auto max-w-7xl px-4 pb-6 pt-0 sm:px-6 lg:px-8">
       
-      <header class="sticky top-0 z- w-full pt-4 mb-4">
-        <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-4 py-2 shadow-2xl transition-all duration-300">
+      <header class="sticky top-4 z- mb-8">
+        <div class="rounded-[2rem] lg:rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-4 py-2 shadow-2xl transition-all duration-300">
           <div class="flex items-center justify-between">
             
             <a href="/" class="flex-shrink-0 transition hover:scale-105">
@@ -83,10 +83,14 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
                 <button id="yt-mobile-btn" class="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-gray-300 py-1 outline-none">
                   YouTube <svg id="yt-arrow" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
                 </button>
+                
                 <div id="yt-mobile-links" class="hidden flex-col pl-4 mt-3 border-l border-fuchsia-500/20 gap-y-4">
-                  <a href={ytArtist} target="_blank" class="text-[10px] font-bold uppercase text-gray-400">Artist Channel</a>
-                  <div class="h-[1px] w-full bg-white/5"></div>
-                  <a href={ytBeats} target="_blank" class="text-[10px] font-bold uppercase text-gray-400">Beats Channel</a>
+                  <a href={ytArtist} target="_blank" class="text-[10px] font-bold uppercase text-gray-400 hover:text-white pt-1">
+                    Artist Channel
+                  </a>
+                  <div class="h-[1px] w-full bg-white/5"></div> <a href={ytBeats} target="_blank" class="text-[10px] font-bold uppercase text-gray-400 hover:text-white pb-1">
+                    Beats Channel
+                  </a>
                 </div>
               </div>
 
@@ -129,6 +133,7 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
       const mobileMenu = document.getElementById('mobile-menu');
       const burgerOpen = document.getElementById('burger-open');
       const burgerClose = document.getElementById('burger-close');
+
       burgerBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         burgerOpen.classList.toggle('hidden');
@@ -138,6 +143,7 @@ const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
       const ytBtn = document.getElementById('yt-mobile-btn');
       const ytLinks = document.getElementById('yt-mobile-links');
       const ytArrow = document.getElementById('yt-arrow');
+
       ytBtn.addEventListener('click', () => {
         ytLinks.classList.toggle('hidden');
         ytArrow.classList.toggle('rotate-180');
