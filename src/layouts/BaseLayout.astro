@@ -1,4 +1,118 @@
-<header id="main-header">
+\---
+import "../styles/global.css";
+import en from "../i18n/en";
+import el from "../i18n/el";
+import { beatstarsLinks, socialLinks } from "../config/links";
+
+interface Props {
+  title?: string;
+}
+
+// ΕΔΩ ΕΙΝΑΙ ΟΙ ΟΡΙΣΜΟΙ ΠΟΥ ΕΛΕΙΠΑΝ
+const { title = "Mr. Bonzo | Official" } = Astro.props;
+const logoPath = "/images/logo-main.webp";
+const i18nPayload = { en, el };
+
+// --- SOCIAL MEDIA & SEO CONFIG ---
+const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
+const ogImageURL = "https://mrbonzo-beats.pages.dev/images/og-image.jpg";
+const siteURL = "https://mrbonzo-beats.pages.dev/";
+// ---------------------------------
+
+const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J"; 
+const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
+const tikTokLink = "https://www.tiktok.com/@mrbonzomusic"; 
+const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
+const ytArtist = "https://www.youtube.com/@mrbonzomusic";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={siteDescription} />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mr. Bonzo" />
+    <meta name="theme-color" content="#000000" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={`${ogImageURL}?v=2`} />
+
+    <style is:global>
+      header#main-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 9999999 !important;
+        padding-top: 0.75rem;
+      }
+      body {
+        padding-top: 90px !important;
+        background-color: black;
+      }
+      #mobile-menu {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      /* Dropdown CSS */
+      .nav-dropdown {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 20px;
+        margin-bottom: -20px;
+      }
+      .nav-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.95);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+        z-index: 1000;
+        border: 1px solid rgba(217, 70, 239, 0.2);
+        border-radius: 14px;
+        margin-top: 5px;
+        backdrop-filter: blur(12px);
+      }
+      .nav-dropdown:hover .nav-dropdown-content,
+      .nav-dropdown:focus-within .nav-dropdown-content {
+        display: block;
+        animation: dropdownFade 0.2s ease-out;
+      }
+      @keyframes dropdownFade {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .nav-dropdown-content a {
+        color: rgba(250, 232, 255, 0.75);
+        padding: 12px 16px;
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+      }
+      .nav-dropdown-content a:hover {
+        color: #e879f9;
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen antialiased bg-black text-white">
+    
+    <header id="main-header">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-5 py-2.5 shadow-2xl">
           <div class="flex items-center justify-between">
@@ -85,34 +199,77 @@
       </div>
     </header>
 
-<script is:inline define:vars={{ i18nPayload, title, siteURL }}>
-  // ... (Dictionary & Language logic) ...
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <slot />
+    </main>
 
-  // MOBILE DROPDOWN YOUTUBE
-  const ytTrigger = document.getElementById('m-yt-trigger');
-  const ytContent = document.getElementById('m-yt-content');
-  const ytIcon = document.getElementById('m-yt-icon');
+    <script is:inline define:vars={{ i18nPayload, title, siteURL }}>
+      // I18N
+      const dictionaries = i18nPayload;
+      const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+      
+      const applyLanguage = (lang) => {
+        const dict = dictionaries[lang] || dictionaries.en;
+        document.documentElement.lang = lang;
+        localStorage.setItem("site-lang", lang);
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.getAttribute("data-i18n");
+          const value = key ? getByPath(dict, key) : null;
+          if (typeof value === "string") node.innerHTML = value;
+        });
+        document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
+          btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
+        });
+      };
 
-  ytTrigger?.addEventListener('click', () => {
-    const isOpen = ytContent.classList.toggle('hidden');
-    ytIcon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-  });
+      applyLanguage(localStorage.getItem("site-lang") || "en");
+      document.querySelectorAll("[data-lang-switch]").forEach(btn => {
+        btn.addEventListener("click", () => applyLanguage(btn.getAttribute("data-lang-switch")));
+      });
 
-  // ... (Burger Menu logic) ...
+      // Mobile Youtube Dropdown
+      const ytTrigger = document.getElementById('m-yt-trigger');
+      const ytContent = document.getElementById('m-yt-content');
+      const ytIcon = document.getElementById('m-yt-icon');
+      ytTrigger?.addEventListener('click', () => {
+        const isNowHidden = ytContent.classList.toggle('hidden');
+        ytIcon.style.transform = isNowHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
 
-  // SHARE LOGIC
-  const shareBtn = document.getElementById('share-btn');
-  const tooltip = document.getElementById('share-tooltip');
+      // Mobile Menu
+      const bBtn = document.getElementById('burger-btn');
+      const mMenu = document.getElementById('mobile-menu');
+      const bOpen = document.getElementById('b-open');
+      const bClose = document.getElementById('b-close');
 
-  shareBtn?.addEventListener('click', async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: title, text: 'Check out Mr. Bonzo Beats', url: siteURL });
-      } catch (err) {}
-    } else {
-      await navigator.clipboard.writeText(siteURL);
-      tooltip.classList.add('opacity-100');
-      setTimeout(() => tooltip.classList.remove('opacity-100'), 2000);
-    }
-  });
-</script>
+      bBtn?.addEventListener('click', () => {
+        const isHidden = mMenu.classList.toggle('hidden');
+        bOpen.classList.toggle('hidden', !isHidden);
+        bClose.classList.toggle('hidden', isHidden);
+        document.body.style.overflow = isHidden ? 'auto' : 'hidden';
+      });
+
+      document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => {
+        mMenu.classList.add('hidden');
+        bOpen.classList.remove('hidden');
+        bClose.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }));
+
+      // Share Logic
+      const shareBtn = document.getElementById('share-btn');
+      const tooltip = document.getElementById('share-tooltip');
+      shareBtn?.addEventListener('click', async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, text: 'Check out Mr. Bonzo Beats', url: siteURL });
+          } catch (err) {}
+        } else {
+          await navigator.clipboard.writeText(siteURL);
+          tooltip.classList.add('opacity-100');
+          setTimeout(() => tooltip.classList.remove('opacity-100'), 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
