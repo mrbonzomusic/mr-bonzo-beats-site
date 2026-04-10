@@ -11,7 +11,6 @@ interface Props {
 // CONFIGURATION & VARIABLES
 const { title = "Mr. Bonzo | Official" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
-const i18nPayload = { en, el };
 
 const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
 const ogImageURL = "https://mrbonzo-beats.pages.dev/images/og-image.jpg";
@@ -22,9 +21,6 @@ const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
 const tikTokLink = "https://www.tiktok.com/@mrbonzomusic"; 
 const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
 const ytArtist = "https://www.youtube.com/@mrbonzomusic";
-const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
-  ? "https://open.spotify.com/"
-  : socialLinks.spotify;
 ---
 
 <!doctype html>
@@ -137,7 +133,8 @@ const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
                 </div>
               </div>
 
-              <a href={spotifyLink} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Spotify</a>
+              <a href="#latest-releases" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Spotify</a>
+              
               <a href={tikTokLink} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">TikTok</a>
               <a href={discordInvite} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Discord</a>
               <a href={pond5Link} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Pond5</a>
@@ -189,7 +186,8 @@ const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
               </div>
             </div>
 
-            <a href={spotifyLink} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Spotify</a>
+            <a href="#latest-releases" class="m-link text-base font-black uppercase text-fuchsia-100/80">Spotify</a>
+            
             <a href={tikTokLink} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">TikTok</a>
             <a href={discordInvite} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Discord</a>
             <a href={pond5Link} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Pond5</a>
@@ -209,29 +207,16 @@ const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
       <slot />
     </main>
 
-    <script is:inline define:vars={{ i18nPayload, title, siteURL }}>
-      // 1. I18N LOGIC
-      const dictionaries = i18nPayload;
-      const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
-      const htmlI18nKeys = new Set(["drumkits.title", "contact.title"]);
+    <script is:inline define:vars={{ title, siteURL }}>
+      // 1. I18N LOGIC (Simplified for inline script)
       const applyLanguage = (lang) => {
-        const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
         localStorage.setItem("site-lang", lang);
-        document.querySelectorAll("[data-i18n]").forEach((node) => {
-          const key = node.getAttribute("data-i18n");
-          const value = key ? getByPath(dict, key) : null;
-          if (typeof value === "string") {
-            if (key && htmlI18nKeys.has(key)) {
-              node.innerHTML = value;
-            } else {
-              node.textContent = value;
-            }
-          }
-        });
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
         });
+        // Dispatch event for components to react
+        window.dispatchEvent(new CustomEvent('langChanged', { detail: lang }));
       };
       applyLanguage(localStorage.getItem("site-lang") || "en");
       document.querySelectorAll("[data-lang-switch]").forEach(btn => {
@@ -255,19 +240,16 @@ const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
       const bOpen = document.getElementById('b-open');
       const bClose = document.getElementById('b-close');
 
-      bBtn?.addEventListener('click', () => {
-        const isHidden = mMenu.classList.toggle('hidden');
-        bOpen.classList.toggle('hidden', !isHidden);
-        bClose.classList.toggle('hidden', isHidden);
-        document.body.style.overflow = isHidden ? 'auto' : 'hidden';
-      });
+      const toggleMenu = (show) => {
+        mMenu.classList.toggle('hidden', !show);
+        bOpen.classList.toggle('hidden', show);
+        bClose.classList.toggle('hidden', !show);
+        document.body.style.overflow = show ? 'hidden' : 'auto';
+      };
 
-      document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => {
-        mMenu.classList.add('hidden');
-        bOpen.classList.remove('hidden');
-        bClose.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }));
+      bBtn?.addEventListener('click', () => toggleMenu(mMenu.classList.contains('hidden')));
+
+      document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
 
       // 4. SHARE LOGIC
       const shareBtn = document.getElementById('share-btn');
@@ -282,9 +264,7 @@ const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
             await navigator.clipboard.writeText(siteURL);
             tooltip?.classList.add('opacity-100');
             setTimeout(() => tooltip?.classList.remove('opacity-100'), 2000);
-          } catch (err) {
-            console.error("Clipboard write failed", err);
-          }
+          } catch (err) {}
         }
       });
     </script>
