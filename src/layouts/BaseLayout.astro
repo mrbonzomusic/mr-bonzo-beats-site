@@ -8,12 +8,10 @@ interface Props {
   title?: string;
 }
 
-// CONFIGURATION & VARIABLES
 const { title = "Mr. Bonzo | Official" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 
 const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
-const ogImageURL = "https://mrbonzo-beats.pages.dev/images/og-image.jpg";
 const siteURL = "https://mrbonzo-beats.pages.dev/";
 
 const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J"; 
@@ -30,7 +28,6 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content={siteDescription} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <style is:global>
       header#main-header {
@@ -44,6 +41,14 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
       body {
         padding-top: 90px !important;
         background-color: black;
+      }
+      /* Το στυλ για τους dividers στο header */
+      .nav-divider {
+        width: 1px;
+        height: 14px;
+        background-color: rgba(217, 70, 239, 0.3);
+        margin: 0 6px;
+        flex-shrink: 0;
       }
       .nav-dropdown {
         position: relative;
@@ -63,27 +68,13 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
         margin-top: 5px;
         backdrop-filter: blur(12px);
       }
-      .nav-dropdown:hover .nav-dropdown-content,
-      .nav-dropdown:focus-within .nav-dropdown-content {
+      .nav-dropdown:hover .nav-dropdown-content {
         display: block;
         animation: dropdownFade 0.2s ease-out;
       }
       @keyframes dropdownFade {
         from { opacity: 0; transform: translateY(5px); }
         to { opacity: 1; transform: translateY(0); }
-      }
-      .nav-dropdown-content a {
-        color: rgba(250, 232, 255, 0.75);
-        padding: 12px 16px;
-        display: block;
-        font-size: 11px;
-        font-weight: bold;
-        text-transform: uppercase;
-        transition: all 0.2s ease;
-      }
-      .nav-dropdown-content a:hover {
-        color: #e879f9;
-        background-color: rgba(255, 255, 255, 0.08);
       }
     </style>
   </head>
@@ -97,12 +88,13 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
               <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[30px]" />
             </a>
 
-            <nav class="hidden lg:flex items-center gap-x-4 xl:gap-x-5">
+            <nav class="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
               <a href="#player" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-400 hover:text-fuchsia-300 transition">Player</a>
               <a href="#beats" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Beats</a>
               <a href="#drumkits" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Kits</a>
-              
               <a href="#latest-releases" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Releases</a>
+              
+              <div class="nav-divider"></div>
 
               <div class="nav-dropdown" tabindex="0">
                 <button class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition flex items-center gap-1.5 outline-none">
@@ -118,6 +110,9 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
               <a href={tikTokLink} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">TikTok</a>
               <a href={pond5Link} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Pond5</a>
               <a href={discordInvite} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Discord</a>
+              
+              <div class="nav-divider"></div>
+
               <a href="#about" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">About</a>
               <a href="#contact" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Contact</a>
             </nav>
@@ -132,28 +127,6 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
             </div>
           </div>
         </div>
-
-        <div id="mobile-menu" class="hidden lg:hidden mt-3 rounded-[2rem] border border-fuchsia-500/20 bg-black/95 p-6 shadow-2xl">
-          <nav class="flex flex-col gap-3 text-center">
-            <a href="#player" class="m-link text-sm font-black uppercase text-fuchsia-400">Player</a>
-            <a href="#beats" class="m-link text-sm font-black uppercase text-white/80">Beats</a>
-            <a href="#drumkits" class="m-link text-sm font-black uppercase text-white/80">Kits</a>
-            <a href="#latest-releases" class="m-link text-sm font-black uppercase text-white/80">Releases</a>
-            
-            <button id="m-yt-trigger" class="text-sm font-black uppercase text-white/80 py-1">YouTube ▼</button>
-            <div id="m-yt-content" class="hidden flex-col bg-white/5 rounded-xl">
-                <a href={ytBeats} target="_blank" class="py-2 text-xs">Beats Channel</a>
-                <a href={ytArtist} target="_blank" class="py-2 text-xs">Artist Channel</a>
-            </div>
-
-            <a href={spotifyLink} target="_blank" class="m-link text-sm font-black uppercase text-white/80">Spotify</a>
-            <a href={tikTokLink} target="_blank" class="m-link text-sm font-black uppercase text-white/80">TikTok</a>
-            <a href={pond5Link} target="_blank" class="m-link text-sm font-black uppercase text-white/80">Pond5</a>
-            <a href={discordInvite} target="_blank" class="m-link text-sm font-black uppercase text-white/80">Discord</a>
-            <a href="#about" class="m-link text-sm font-black uppercase text-white/80">About</a>
-            <a href="#contact" class="m-link text-sm font-black uppercase text-fuchsia-400">Contact</a>
-          </nav>
-        </div>
       </div>
     </header>
 
@@ -162,16 +135,9 @@ const spotifyLink = socialLinks.spotify || "http://googleusercontent.com/spotify
     </main>
 
     <script is:inline>
-      // Menu Toggle logic
       const bBtn = document.getElementById('burger-btn');
       const mMenu = document.getElementById('mobile-menu');
       bBtn?.addEventListener('click', () => mMenu.classList.toggle('hidden'));
-      
-      const ytTrigger = document.getElementById('m-yt-trigger');
-      const ytContent = document.getElementById('m-yt-content');
-      ytTrigger?.addEventListener('click', () => ytContent.classList.toggle('hidden'));
-
-      document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => mMenu.classList.add('hidden')));
     </script>
   </body>
 </html>
