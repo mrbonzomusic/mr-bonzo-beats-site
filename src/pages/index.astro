@@ -5,10 +5,20 @@ import CollaborationsSection from "../components/CollaborationsSection.astro";
 import TypeBeatGrid from "../components/TypeBeatGrid.astro";
 import FeaturedBeatstars from "../components/FeaturedBeatstars.astro";
 import DrumKits from "../components/DrumKits.astro"; // Το νέο import
+import DiscographySection from "../components/DiscographySection.astro";
 import AboutSection from "../components/AboutSection.astro";
 import ServicesSection from "../components/ServicesSection.astro";
 import ContactSection from "../components/ContactSection.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import { getArtistAlbums, extractSpotifyArtistId } from "../lib/spotify";
+import { socialLinks } from "../config/links";
+
+const spotifyData = await getArtistAlbums({
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
+  clientSecret: import.meta.env.SPOTIFY_CLIENT_SECRET,
+  artistId: import.meta.env.SPOTIFY_ARTIST_ID || extractSpotifyArtistId(socialLinks.spotify),
+  fallbackCover: "/images/logo-main.webp",
+});
 ---
 
 <BaseLayout title="Mr. Bonzo | Beatmaker Portfolio">
@@ -17,6 +27,8 @@ import SiteFooter from "../components/SiteFooter.astro";
   <CollaborationsSection />
 
   <TypeBeatGrid />
+
+  <DiscographySection releases={spotifyData.releases} status={spotifyData.status} />
 
   <DrumKits />
   

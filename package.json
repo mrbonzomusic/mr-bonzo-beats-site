@@ -1,5 +1,5 @@
 {
-  "name": "mr-bonzo-beats-site",
+  "name": "mrbonzo-beats",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "git add . && git commit -m \"site update\" && git push"
+    "deploy": "npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",

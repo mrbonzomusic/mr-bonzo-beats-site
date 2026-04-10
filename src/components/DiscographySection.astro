@@ -30,7 +30,9 @@ const fallbackReleases: Release[] = [
 ];
 
 const { releases = fallbackReleases, status = "fallback" } = Astro.props;
-const spotifyUrl = socialLinks.spotify;
+const spotifyUrl = socialLinks.spotify?.includes("YOUR_ID_HERE")
+  ? "https://open.spotify.com/"
+  : socialLinks.spotify;
 
 const statusLabel =
   status === "live" ? "Spotify API: Live Data" : status === "error" ? "Spotify API: Error (Fallback Data)" : "Spotify API: Fallback Data";

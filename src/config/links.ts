@@ -1,6 +1,6 @@
 export const socialLinks = {
   // Αντικατάστησε το 0 με το κανονικό σου Artist Link στο Spotify
-  spotify: "https://open.spotify.com/artist/YOUR_ID_HERE", 
+  spotify: "https://open.spotify.com/artist/5ziH2Z9Gl3M1FhcYvrLHpv", 
   youtube: "https://www.youtube.com/@mrbonzobeatz",
   tiktok: "https://www.tiktok.com/@mr.bonzobeats",
   instagram: "https://www.instagram.com/mrbonzobeats/",

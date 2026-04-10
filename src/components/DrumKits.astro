@@ -30,8 +30,8 @@ const drumKits = [
              <img 
                src={kit.image} 
                alt={kit.title} 
+               data-fallback-src="/images/logo-main.webp"
                class="relative w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-4 drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)]" 
-               onerror="this.src='/images/logo-main.webp'; this.style.padding='40px';"
              />
           </div>
           
@@ -51,6 +51,7 @@ const drumKits = [
               <a 
                 href={kit.link} 
                 target="_blank"
+                rel="noopener noreferrer"
                 class="inline-flex items-center justify-center rounded-full bg-white px-12 py-5 text-[15px] font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-fuchsia-500 hover:text-white hover:shadow-[0_0_30px_rgba(192,38,211,0.6)] active:scale-95"
                 data-i18n="drumkits.getBtn"
               >
@@ -64,3 +65,14 @@ const drumKits = [
     ))}
   </div>
 </section>
+
+<script is:inline>
+  document.querySelectorAll('img[data-fallback-src]').forEach((img) => {
+    img.addEventListener('error', () => {
+      const fallbackSrc = img.getAttribute('data-fallback-src');
+      if (!fallbackSrc || img.getAttribute('src') === fallbackSrc) return;
+      img.setAttribute('src', fallbackSrc);
+      img.style.padding = '40px';
+    });
+  });
+</script>

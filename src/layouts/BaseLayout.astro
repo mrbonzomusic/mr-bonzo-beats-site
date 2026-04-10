@@ -22,6 +22,9 @@ const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
 const tikTokLink = "https://www.tiktok.com/@mrbonzomusic"; 
 const ytBeats = "https://www.youtube.com/@mrbonzobeatz";
 const ytArtist = "https://www.youtube.com/@mrbonzomusic";
+const spotifyLink = socialLinks.spotify?.includes("YOUR_ID_HERE")
+  ? "https://open.spotify.com/"
+  : socialLinks.spotify;
 ---
 
 <!doctype html>
@@ -129,15 +132,15 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
                   YouTube <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div class="nav-dropdown-content">
-                  <a href={ytBeats} target="_blank">Beats Channel</a>
-                  <a href={ytArtist} target="_blank">Artist Channel</a>
+                  <a href={ytBeats} target="_blank" rel="noopener noreferrer">Beats Channel</a>
+                  <a href={ytArtist} target="_blank" rel="noopener noreferrer">Artist Channel</a>
                 </div>
               </div>
 
-              <a href={socialLinks.spotify} target="_blank" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Spotify</a>
-              <a href={tikTokLink} target="_blank" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">TikTok</a>
-              <a href={discordInvite} target="_blank" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Discord</a>
-              <a href={pond5Link} target="_blank" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Pond5</a>
+              <a href={spotifyLink} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Spotify</a>
+              <a href={tikTokLink} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">TikTok</a>
+              <a href={discordInvite} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Discord</a>
+              <a href={pond5Link} target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Pond5</a>
               <a href="#about" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">About</a>
               <a href="#contact" class="text-xs font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition">Contact</a>
             </nav>
@@ -155,7 +158,7 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
                   <span id="share-tooltip" class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-fuchsia-600 text-[9px] font-black uppercase px-2 py-1 rounded shadow-xl pointer-events-none opacity-0 transition-opacity duration-300">Copied!</span>
                </button>
 
-               <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 sm:px-5 sm:py-2 text-[9px] sm:text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition shadow-lg shadow-fuchsia-600/20">Store</a>
+               <a href={beatstarsLinks.profile} target="_blank" rel="noopener noreferrer" class="rounded-full bg-fuchsia-600 px-4 py-1.5 sm:px-5 sm:py-2 text-[9px] sm:text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition shadow-lg shadow-fuchsia-600/20">Store</a>
 
                <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-100/70 hover:text-fuchsia-400 transition outline-none">
                 <svg id="b-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16m-7 6h7"/></svg>
@@ -177,19 +180,19 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
               </button>
               
               <div id="m-yt-content" class="hidden flex-col w-full mt-1 bg-fuchsia-500/5 rounded-xl border border-fuchsia-500/10 overflow-hidden">
-                <a href={ytBeats} target="_blank" class="block w-full py-2.5 text-xs font-bold text-fuchsia-200/70 border-b border-fuchsia-500/10 active:bg-fuchsia-500/20 transition-colors">
+                <a href={ytBeats} target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 text-xs font-bold text-fuchsia-200/70 border-b border-fuchsia-500/10 active:bg-fuchsia-500/20 transition-colors">
                   Beats Channel
                 </a>
-                <a href={ytArtist} target="_blank" class="block w-full py-2.5 text-xs font-bold text-fuchsia-200/70 active:bg-fuchsia-500/20 transition-colors">
+                <a href={ytArtist} target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 text-xs font-bold text-fuchsia-200/70 active:bg-fuchsia-500/20 transition-colors">
                   Artist Channel
                 </a>
               </div>
             </div>
 
-            <a href={socialLinks.spotify} target="_blank" class="m-link text-base font-black uppercase text-fuchsia-100/80">Spotify</a>
-            <a href={tikTokLink} target="_blank" class="m-link text-base font-black uppercase text-fuchsia-100/80">TikTok</a>
-            <a href={discordInvite} target="_blank" class="m-link text-base font-black uppercase text-fuchsia-100/80">Discord</a>
-            <a href={pond5Link} target="_blank" class="m-link text-base font-black uppercase text-fuchsia-100/80">Pond5</a>
+            <a href={spotifyLink} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Spotify</a>
+            <a href={tikTokLink} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">TikTok</a>
+            <a href={discordInvite} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Discord</a>
+            <a href={pond5Link} target="_blank" rel="noopener noreferrer" class="m-link text-base font-black uppercase text-fuchsia-100/80">Pond5</a>
             <a href="#about" class="m-link text-base font-black uppercase text-fuchsia-100/80">About</a>
             <a href="#contact" class="m-link text-base font-black uppercase text-fuchsia-400">Contact</a>
             
@@ -210,6 +213,7 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
       // 1. I18N LOGIC
       const dictionaries = i18nPayload;
       const getByPath = (obj, path) => path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+      const htmlI18nKeys = new Set(["drumkits.title", "contact.title"]);
       const applyLanguage = (lang) => {
         const dict = dictionaries[lang] || dictionaries.en;
         document.documentElement.lang = lang;
@@ -217,7 +221,13 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
         document.querySelectorAll("[data-i18n]").forEach((node) => {
           const key = node.getAttribute("data-i18n");
           const value = key ? getByPath(dict, key) : null;
-          if (typeof value === "string") node.innerHTML = value;
+          if (typeof value === "string") {
+            if (key && htmlI18nKeys.has(key)) {
+              node.innerHTML = value;
+            } else {
+              node.textContent = value;
+            }
+          }
         });
         document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
           btn.setAttribute("data-active", btn.getAttribute("data-lang-switch") === lang ? "true" : "false");
@@ -268,9 +278,13 @@ const ytArtist = "https://www.youtube.com/@mrbonzomusic";
             await navigator.share({ title: title, text: 'Check out Mr. Bonzo Beats', url: siteURL });
           } catch (err) {}
         } else {
-          await navigator.clipboard.writeText(siteURL);
-          tooltip.classList.add('opacity-100');
-          setTimeout(() => tooltip.classList.remove('opacity-100'), 2000);
+          try {
+            await navigator.clipboard.writeText(siteURL);
+            tooltip?.classList.add('opacity-100');
+            setTimeout(() => tooltip?.classList.remove('opacity-100'), 2000);
+          } catch (err) {
+            console.error("Clipboard write failed", err);
+          }
         }
       });
     </script>
