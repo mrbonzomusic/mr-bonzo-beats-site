@@ -1,5 +1,4 @@
 ---
-import { aboutContent } from "../config/about";
 import { socialLinks } from "../config/links";
 
 const licenses = [
@@ -44,7 +43,9 @@ const tags = ["Beatmaker", "Engineer", "Producer"];
         <div id="slide-0" class="slide w-full transition-all duration-500 opacity-100 translate-x-0 relative text-left">
           <p class="text-[11px] font-black uppercase tracking-[0.3em] text-fuchsia-400">The Artist</p>
           <h2 class="mt-3 text-3xl font-black uppercase leading-tight text-white sm:text-5xl">The Architect <br class="hidden sm:block"/><span class="text-fuchsia-500">of Energy</span></h2>
-          <p class="mt-6 text-base leading-relaxed text-gray-300 sm:text-lg lg:text-xl">{aboutContent.en.bio}</p>
+          <p class="mt-6 text-base leading-relaxed text-gray-300 sm:text-lg lg:text-xl" data-i18n="about.bio">
+            Alexandros Pilatos is a music producer/audio engineer in Athens, active since 2003. Founder of Purple Sound Studio (2007). His signature sound blends Boom Bap, Lofi, Trap, Dnb, Reggae, Breakbeat, Electronica, and Progressive House.
+          </p>
           <div class="mt-8 flex flex-wrap gap-3">
             {tags.map((tag) => (
               <span class="rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 px-4 py-1.5 text-[10px] font-black text-fuchsia-300 uppercase tracking-wider">{tag}</span>
