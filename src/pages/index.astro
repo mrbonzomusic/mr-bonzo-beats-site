@@ -4,7 +4,7 @@ import Hero from "../components/Hero.astro";
 import CollaborationsSection from "../components/CollaborationsSection.astro";
 import TypeBeatGrid from "../components/TypeBeatGrid.astro";
 import FeaturedBeatstars from "../components/FeaturedBeatstars.astro";
-import DrumKits from "../components/DrumKits.astro"; // Το νέο import
+import DrumKits from "../components/DrumKits.astro";
 import DiscographySection from "../components/DiscographySection.astro";
 import AboutSection from "../components/AboutSection.astro";
 import ServicesSection from "../components/ServicesSection.astro";
@@ -40,23 +40,35 @@ if (!(spotifyData.status === "scrape" && spotifyData.releases.length > 0)) {
 ---
 
 <BaseLayout title="Mr. Bonzo | Beatmaker Portfolio">
-  <Hero />
+  
+  <section id="player">
+    <Hero />
+  </section>
 
   <CollaborationsSection />
 
-  <TypeBeatGrid />
+  <section id="beats">
+    <TypeBeatGrid />
+    <FeaturedBeatstars />
+  </section>
 
-  <DiscographySection releases={spotifyData.releases} status={spotifyData.status} />
+  <section id="drumkits">
+    <DrumKits />
+  </section>
 
-  <DrumKits />
+  <section id="latest-releases">
+    <DiscographySection releases={spotifyData.releases} status={spotifyData.status} />
+  </section>
+
+  <section id="about">
+    <AboutSection />
+    <ServicesSection />
+  </section>
   
-  <FeaturedBeatstars />
-
-  <AboutSection />
-
-  <ServicesSection />
-  
-  <ContactSection /> 
+  <section id="contact">
+    <ContactSection /> 
+  </section>
 
   <SiteFooter />
+
 </BaseLayout>
