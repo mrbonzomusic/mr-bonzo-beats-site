@@ -75,16 +75,16 @@ const statusLabel =
     </a>
   </div>
 
-  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {
       releases.map((release) => (
         <a 
           href={release.spotify} 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="group relative flex flex-col overflow-hidden rounded-3xl border border-fuchsia-500/10 bg-white/[0.03] transition-all duration-500 hover:-translate-y-2 hover:border-fuchsia-500/40 hover:bg-white/[0.06] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+          class="group relative flex flex-col overflow-hidden rounded-2xl border border-fuchsia-500/10 bg-white/[0.03] transition-all duration-500 hover:-translate-y-1.5 hover:border-fuchsia-500/40 hover:bg-white/[0.06] hover:shadow-[0_16px_30px_rgba(0,0,0,0.35)]"
         >
-          <div class="relative aspect-square overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
             <img 
               src={release.cover} 
               alt={`${release.title} cover`} 
@@ -92,17 +92,17 @@ const statusLabel =
               class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
             />
             <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-               <div class="rounded-full bg-white/10 p-4 backdrop-blur-md border border-white/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+               <div class="rounded-full bg-white/10 p-3 backdrop-blur-md border border-white/20">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
                </div>
             </div>
           </div>
 
-          <div class="flex flex-1 flex-col p-6">
-            <h4 class="text-xl font-black uppercase tracking-tight text-white group-hover:text-fuchsia-400 transition-colors">
+          <div class="flex flex-1 flex-col p-4 sm:p-5">
+            <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-white group-hover:text-fuchsia-400 transition-colors line-clamp-2">
               {release.title}
             </h4>
-            <div class="mt-2 flex items-center justify-between">
+            <div class="mt-1.5 flex items-center justify-between">
               <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-fuchsia-300/40">{release.year}</p>
               <span class="text-[9px] font-black uppercase tracking-widest text-fuchsia-500 opacity-0 transition-all group-hover:opacity-100" data-i18n="releases.listenNow">Listen Now →</span>
             </div>
