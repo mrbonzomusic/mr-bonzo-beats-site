@@ -1,26 +1,80 @@
+---
+import { socialLinks } from "../config/links";
+---
+
+<footer class="mt-24 border-t border-white/10 py-12 px-4">
+  <div class="max-w-7xl mx-auto flex flex-col gap-8 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
+    
+    <div class="order-2 lg:order-1">
+      <p class="text-[11px] uppercase tracking-[0.25em] text-gray-500 font-medium">
+        &copy; {new Date().getFullYear()} <span class="text-fuchsia-500/80 font-bold">MR. BONZO</span>. 
+        <span class="block sm:inline sm:ml-2 opacity-60">All rights reserved.</span>
+      </p>
+    </div>
+
+    <div class="order-3 lg:order-2 flex flex-col items-center gap-2">
+      <span class="text-[9px] font-black uppercase tracking-[0.3em] text-fuchsia-400/80">Global Traffic</span>
+      
+      <div class="flex items-center gap-4 px-4 py-2 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+        <div class="flex flex-col items-center border-r border-white/10 pr-4">
+          <span id="stats-count" class="text-[13px] font-mono font-bold text-white tracking-tighter">0000</span>
+          <span class="text-[7px] uppercase tracking-widest text-gray-500">Total Hits</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-fuchsia-500"></span>
+          </span>
+          <span class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em]">Active</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 lg:justify-end">
+      {[
+        { name: "Instagram", href: socialLinks.instagram },
+        { name: "YouTube", href: socialLinks.youtube },
+        { name: "Email", href: socialLinks.email },
+        { name: "TikTok", href: socialLinks.tiktok },
+        { name: "Spotify", href: socialLinks.spotify }
+      ].map((link) => (
+        <a
+          href={link.href}
+          target={link.name !== "Email" ? "_blank" : undefined}
+          rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+          class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 transition-all duration-300 hover:text-fuchsia-400 hover:translate-y-[-2px]"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+    
+  </div>
+</footer>
+
 <script is:inline>
   async function loadGoatStats() {
     const el = document.getElementById('stats-count');
-    if (!el) return;
-    
     try {
-      // Το cache: 'no-store' λέει στον browser "μην διαβάζεις το παλιό, φέρε το φρέσκο"
-      const res = await fetch(`https://mrbonzo.goatcounter.com/counter//total.json?t=${Date.now()}`, {
-        cache: 'no-store'
-      });
+      // Τραβάμε τα δεδομένα από το account 'mrbonzo' που δημιούργησες
+      const res = await fetch('https://mrbonzo.goatcounter.com/counter//total.json');
       const data = await res.json();
       
       if (data && data.count) {
+        // Καθαρίζουμε το νούμερο από κενά και κόμματα
         const cleanCount = data.count.replace(/\s/g, '').replace(/,/g, '');
+        // Προσθέτουμε μηδενικά για να έχει πάντα 4 ψηφία (π.χ. 0005)
         el.innerText = cleanCount.padStart(4, '0');
-        console.log("Counter updated to:", cleanCount);
       }
     } catch (e) {
-      console.error("Counter error:", e);
+      // Αν το API αργήσει στην αρχή, δείχνουμε 0001
+      if (el) el.innerText = "0001";
     }
   }
 
-  // Refresh κάθε 10 δευτερόλεπτα
+  // Εκτέλεση μόλις φορτώσει η σελίδα
   loadGoatStats();
-  setInterval(loadGoatStats, 10000);
+  // Ανανέωση κάθε 30 δευτερόλεπτα
+  setInterval(loadGoatStats, 30000);
 </script>
