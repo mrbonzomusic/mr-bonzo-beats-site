@@ -7,19 +7,27 @@ import { socialLinks } from "../config/links";
     
     <div class="order-2 lg:order-1">
       <p class="text-[11px] uppercase tracking-[0.25em] text-gray-500 font-medium">
-        &copy; {new Date().getFullYear()} <span class="text-fuchsia-500/80 font-bold">Mr. Bonzo</span>. 
-        <span class="block sm:inline sm:ml-2 opacity-60" data-i18n="footer.rights">All rights reserved.</span>
+        &copy; {new Date().getFullYear()} <span class="text-fuchsia-500/80 font-bold">MR. BONZO</span>. 
+        <span class="block sm:inline sm:ml-2 opacity-60">All rights reserved.</span>
       </p>
     </div>
 
-    <div class="order-3 lg:order-2 flex flex-col items-center gap-1.5 opacity-40 hover:opacity-100 transition-opacity duration-500">
-      <span class="text-[9px] font-black uppercase tracking-[0.3em] text-fuchsia-400">Live Traffic</span>
-      <div class="flex items-center gap-2">
-        <span class="relative flex h-1.5 w-1.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-fuchsia-500"></span>
-        </span>
-        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">System Active</span>
+    <div class="order-3 lg:order-2 flex flex-col items-center gap-2">
+      <span class="text-[9px] font-black uppercase tracking-[0.3em] text-fuchsia-400/80">Global Traffic</span>
+      
+      <div class="flex items-center gap-4 px-4 py-2 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+        <div class="flex flex-col items-center border-r border-white/10 pr-4">
+          <span id="visit-count" class="text-[13px] font-mono font-bold text-white tracking-tighter">0000</span>
+          <span class="text-[7px] uppercase tracking-widest text-gray-500">Total Hits</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-fuchsia-500"></span>
+          </span>
+          <span class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em]">Active</span>
+        </div>
       </div>
     </div>
 
@@ -44,3 +52,28 @@ import { socialLinks } from "../config/links";
     
   </div>
 </footer>
+
+<script is:inline>
+  // Λειτουργία για τον Counter
+  async function updateCounter() {
+    try {
+      // Χρησιμοποιούμε το goatcounter ή ένα public count API
+      // Για δοκιμή χρησιμοποιούμε ένα αξιόπιστο countapi namespace
+      const namespace = "mrbonzo-beats-official";
+      const key = "visits";
+      const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+      const data = await response.json();
+      
+      const el = document.getElementById('visit-count');
+      if (el && data.value) {
+        el.innerText = data.value.toLocaleString().padStart(4, '0');
+      }
+    } catch (e) {
+      console.log("Counter offline");
+      const el = document.getElementById('visit-count');
+      if (el) el.innerText = "ONLINE";
+    }
+  }
+
+  updateCounter();
+</script>
