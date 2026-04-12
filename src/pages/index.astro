@@ -13,6 +13,10 @@ import SiteFooter from "../components/SiteFooter.astro";
 import { getArtistAlbums, extractSpotifyArtistId, getReleasesFromRss, getReleasesFromSpotifyPage } from "../lib/spotify";
 import { socialLinks } from "../config/links";
 
+// ΕΙΣΑΓΩΓΗ ΓΛΩΣΣΩΝ
+import en from "../i18n/en";
+import el from "../i18n/el";
+
 const fallbackCover = "/images/logo-main.webp";
 const scrapedData = await getReleasesFromSpotifyPage({
   artistUrl: socialLinks.spotify,
@@ -73,3 +77,20 @@ if (!(spotifyData.status === "scrape" && spotifyData.releases.length > 0)) {
   <SiteFooter />
 
 </BaseLayout>
+
+<script is:inline>
+  /**
+   * CLIENT-SIDE TRANSLATION LOGIC
+   * Αυτό το script τρέχει στον browser. Αν ο χρήστης έχει επιλέξει 'el',
+   * μπορούμε να κάνουμε manipulate το DOM εδώ, ή να αφήσουμε τα 
+   * React/Island components να το κάνουν.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selected-lang') || 'en';
+    if (savedLang === 'el') {
+      // Εδώ κανονικά θα έπρεπε να αλλάξουμε τα κείμενα χειροκίνητα αν τα components 
+      // δεν είναι "reactive". 
+      console.log("Language detected: Greek. Updating UI...");
+    }
+  });
+</script>
