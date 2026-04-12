@@ -31,6 +31,7 @@ const el = {
   },
   about: {
     label: "About",
+    artistEyebrow: "Ο Καλλιτέχνης",
     title: "Ο Αρχιτέκτονας της Ενέργειας",
     bio: "Ο Αλέξανδρος Πιλάτος είναι music producer και audio engineer στην Αθήνα, ενεργός από το 2003. Είναι ο ιδρυτής του Purple Sound Studio (2007). Ο ήχος του συνδυάζει Boom Bap, Lofi, Trap, Dnb, Reggae, Breakbeat, Electronica και Progressive House.",
     beatmaker: "Beatmaker",
@@ -48,6 +49,7 @@ const el = {
   },
   contact: {
     label: "Contact",
+    eyebrow: "Επικοινώνησε",
     title: "Ας Δημιουργήσουμε <span class='text-fuchsia-500'>Ιστορία</span>",
     subtitle: "Για custom beats, μίξη & mastering ή επιχειρηματικές προτάσεις, επικοινωνήστε μαζί μου μέσω της πλατφόρμας που προτιμάτε.",
     email: "Email",
@@ -77,7 +79,9 @@ const el = {
   },
   footer: {
     rights: "Με επιφύλαξη παντός δικαιώματος.",
-    instagram: "Instagram (@mrbonzobeats)"
+    instagram: "Instagram (@mrbonzobeats)",
+    totalHitsLabel: "Συνολικές επισκέψεις",
+    activeNowLabel: "Τώρα online"
   }
 };
 

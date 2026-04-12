@@ -2,6 +2,36 @@
 
 :root {
   color-scheme: dark;
+
+  /* Sync with hero eyebrow (“Beatmaker Portfolio”); change here to update all sections */
+  --label-eyebrow-size-sm: 0.875rem;
+  --label-eyebrow-size-md: 1rem;
+  --label-eyebrow-size-lg: 1.125rem;
+  --label-eyebrow-weight: 700;
+  --label-eyebrow-tracking: 0.35em;
+  --label-eyebrow-color: rgb(217 70 239 / 0.6);
+}
+
+/* Shared label style: Hero, About (“The Artist”), Contact (“Get in touch”) */
+.eyebrow-hero-label {
+  font-family: inherit;
+  font-weight: var(--label-eyebrow-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--label-eyebrow-tracking);
+  color: var(--label-eyebrow-color);
+  font-size: var(--label-eyebrow-size-sm);
+}
+
+@media (min-width: 640px) {
+  .eyebrow-hero-label {
+    font-size: var(--label-eyebrow-size-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .eyebrow-hero-label {
+    font-size: var(--label-eyebrow-size-lg);
+  }
 }
 
 html {

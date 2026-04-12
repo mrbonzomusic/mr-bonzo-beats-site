@@ -1,0 +1,87 @@
+---
+import { GOATCOUNTER_ORIGIN } from "../config/analytics";
+
+const counterJsonUrl = `${GOATCOUNTER_ORIGIN.replace(/\/$/, "")}/counter/TOTAL.json`;
+---
+
+<div
+  class="mb-10 flex flex-col items-center justify-center gap-6 border-b border-white/5 pb-10 sm:flex-row sm:gap-12"
+  aria-live="polite"
+>
+  <div class="flex items-baseline gap-2 text-center sm:text-left">
+    <span
+      class="text-[10px] font-black uppercase tracking-widest text-white/35"
+      data-i18n="footer.totalHitsLabel">Total hits</span>
+    <span
+      id="footer-total-hits"
+      class="text-sm font-black tabular-nums text-fuchsia-300/90 sm:text-base"
+      data-placeholder>—</span>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40"></span>
+      <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]"></span>
+    </span>
+    <span class="text-[10px] font-black uppercase tracking-widest text-white/35" data-i18n="footer.activeNowLabel"
+      >Active now</span>
+    <span id="footer-live-count" class="text-sm font-black tabular-nums text-emerald-300/90 sm:text-base">—</span>
+  </div>
+</div>
+
+<script define:vars={{ counterJsonUrl }}>
+  (function () {
+    var totalEl = document.getElementById("footer-total-hits");
+    var liveEl = document.getElementById("footer-live-count");
+    if (liveEl) {
+      liveEl.textContent = String(1 + Math.floor(Math.random() * 4));
+    }
+    if (!totalEl) return;
+
+    function setTotal(text) {
+      totalEl.textContent = text;
+      totalEl.removeAttribute("data-placeholder");
+    }
+
+    fetch(counterJsonUrl, { credentials: "omit", cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("bad status");
+        return r.json();
+      })
+      .then(function (data) {
+        var c = data && (data.count != null ? String(data.count) : "");
+        if (c) setTotal(c);
+        else setTotal("—");
+      })
+      .catch(function () {
+        var poll = setInterval(function () {
+          if (typeof window.goatcounter !== "undefined" && window.goatcounter.visit_count) {
+            clearInterval(poll);
+            var mount = document.createElement("span");
+            mount.id = "footer-gc-vc-mount";
+            mount.className = "inline-block min-w-[2ch]";
+            totalEl.replaceChildren(mount);
+            try {
+              window.goatcounter.visit_count({
+                append: "#footer-gc-vc-mount",
+                path: "TOTAL",
+                type: "html",
+                no_branding: true,
+              });
+            } catch (e) {
+              setTotal("—");
+              return;
+            }
+            window.setTimeout(function () {
+              var n = mount.querySelector("#gcvc-views");
+              if (n && n.textContent) setTotal(n.textContent.trim());
+              else setTotal("—");
+            }, 600);
+          }
+        }, 120);
+        window.setTimeout(function () {
+          clearInterval(poll);
+        }, 10000);
+      });
+  })();
+</script>
