@@ -10,7 +10,7 @@ const { title = "Mr. Bonzo | Official" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
 
 const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
-const siteURL = "https://mrbonzo-beats.pages.dev/";
+const siteURL = "https://mr-bonzo-db.vercel.app/";
 
 const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J";
 const pond5Link = "https://www.pond5.com/artist/mrbonzobeats";
@@ -110,7 +110,6 @@ const spotifyLink = socialLinks.spotify;
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* Mobile Menu Styles */
       #mobile-menu.hidden {
         display: none;
       }
@@ -232,7 +231,33 @@ const spotifyLink = socialLinks.spotify;
     </main>
 
     <script is:inline>
-      // BURGER LOGIC
+      // --- LANGUAGE SWITCHER LOGIC ---
+      const langButtons = document.querySelectorAll('[data-lang-switch]');
+      
+      function updateLangUI(activeLang) {
+        langButtons.forEach(btn => {
+          btn.setAttribute('data-active', btn.getAttribute('data-lang-switch') === activeLang);
+        });
+        document.documentElement.lang = activeLang;
+      }
+
+      // Initialize language from localStorage or default to 'en'
+      const savedLang = localStorage.getItem('selected-lang') || 'en';
+      updateLangUI(savedLang);
+
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newLang = btn.getAttribute('data-lang-switch');
+          localStorage.setItem('selected-lang', newLang);
+          updateLangUI(newLang);
+          
+          // Signal for React components and refresh to apply i18n
+          window.dispatchEvent(new CustomEvent('languageChanged', { detail: newLang }));
+          window.location.reload(); 
+        });
+      });
+
+      // --- BURGER LOGIC ---
       const bBtn = document.getElementById('burger-btn');
       const mMenu = document.getElementById('mobile-menu');
       
@@ -253,7 +278,7 @@ const spotifyLink = socialLinks.spotify;
         });
       }
 
-      // SHARE LOGIC
+      // --- SHARE LOGIC ---
       const shareBtn = document.getElementById('share-btn');
       if (shareBtn) {
         shareBtn.addEventListener('click', async () => {
@@ -270,12 +295,11 @@ const spotifyLink = socialLinks.spotify;
               console.log('Share canceled or failed');
             }
           } else {
-            // Fallback for PC: Copy to clipboard
             try {
               await navigator.clipboard.writeText(window.location.href);
               alert('Link copied to clipboard!');
             } catch (err) {
-              console.error('Failed to copy: ', err);
+              console.errorr('Failed to copy: ', err);
             }
           }
         });
