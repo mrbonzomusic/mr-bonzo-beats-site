@@ -44,7 +44,7 @@ const drumKits = [
             </p>
             
             <div class="flex flex-wrap items-center justify-center lg:justify-start gap-10 px-2 sm:px-3">
-              <span class="display-heading-wide text-3xl sm:text-5xl font-black text-fuchsia-500 drop-shadow-[0_0_15px_rgba(192,38,211,0.6)] tracking-[0.12em] md:tracking-[0.12em] italic uppercase break-words" style="overflow-wrap:anywhere;" data-i18n="drumkits.freeLabel">
+              <span class="display-heading-wide drumkit-free-label text-3xl sm:text-5xl font-black text-fuchsia-500 drop-shadow-[0_0_15px_rgba(192,38,211,0.6)] tracking-[0.12em] md:tracking-[0.12em] italic uppercase break-words" style="overflow-wrap:anywhere;" data-i18n="drumkits.freeLabel">
                 {kit.price}
               </span>
               
@@ -76,3 +76,11 @@ const drumKits = [
     });
   });
 </script>
+
+<style>
+  @media (max-width: 389px) {
+    .drumkit-free-label {
+      font-size: 1.5rem; /* text-2xl */
+    }
+  }
+</style>
