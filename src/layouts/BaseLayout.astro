@@ -144,7 +144,6 @@ const translations = { en, el };
         position: relative;
         z-index: 9999;
         pointer-events: auto;
-        border: 2px solid red !important;
       }
       .lang-switch-btn {
         pointer-events: auto;
@@ -320,7 +319,6 @@ const translations = { en, el };
 
         langButtons.forEach((btn) => {
           btn.addEventListener('click', () => {
-            alert('Click detected!');
             const newLang = btn.getAttribute('data-lang-switch');
             console.log('[i18n] Language button clicked:', newLang);
             if (!newLang) return;
