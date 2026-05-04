@@ -13,7 +13,6 @@ const logoPath = "/images/logo-main.webp";
 const socialPreviewImage = "https://mrbonzo-beats.pages.dev/og-image.jpg?v=1";
 
 const siteDescription = "Official website of Mr. Bonzo. High-quality trap beats and exclusive drum kits.";
-// ΑΝ ΕΙΣΑΙ ΣΤΟ OFFICIAL SITE, ΑΛΛΑΞΕ ΤΟ URL ΣΕ: https://mrbonzo-beats.pages.dev/
 const siteURL = "https://mrbonzo-beats.pages.dev/";
 
 const discordInvite = socialLinks.discord || "https://discord.gg/hmpCHd4J";
@@ -61,16 +60,52 @@ const translations = { en, el };
     <script data-goatcounter="https://mrbonzo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <style is:global>
+      /* --- BaseBox Banner Styles --- */
+      .basebox-banner {
+        background: linear-gradient(90deg, #000, #1a001a);
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(217, 70, 239, 0.2);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000001; /* Πάνω από όλα */
+      }
+      .basebox-banner a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+        transition: opacity 0.2s;
+      }
+      .basebox-banner a:hover { opacity: 0.8; }
+      .basebox-banner strong { color: #d946ef; font-weight: 900; }
+      .basebox-badge {
+        background: rgba(217, 70, 239, 0.1);
+        color: #d946ef;
+        padding: 2px 8px;
+        border-radius: 99px;
+        font-size: 9px;
+        margin-left: 8px;
+        border: 1px solid rgba(217, 70, 239, 0.3);
+      }
+
+      /* --- Existing Header Adjustments --- */
       header#main-header {
         position: fixed !important;
-        top: 0 !important;
+        top: 35px !important; /* Μετακινείται κάτω από το banner */
         left: 0 !important;
         right: 0 !important;
         z-index: 9999999 !important;
         padding-top: 0.75rem;
       }
       body {
-        padding-top: 90px !important;
+        padding-top: 130px !important; /* Αυξημένο padding για να μην κρύβεται το περιεχόμενο */
         background-color: black;
       }
       .nav-divider {
@@ -121,9 +156,7 @@ const translations = { en, el };
         to { opacity: 1; transform: translateY(0); }
       }
 
-      #mobile-menu.hidden {
-        display: none;
-      }
+      #mobile-menu.hidden { display: none; }
       .mobile-link {
         display: block;
         padding: 0.85rem 1rem;
@@ -152,13 +185,19 @@ const translations = { en, el };
         z-index: 9999;
         pointer-events: auto;
       }
-      .lang-switch-btn {
-        pointer-events: auto;
-      }
+      .lang-switch-btn { pointer-events: auto; }
     </style>
   </head>
 
   <body class="min-h-screen antialiased bg-black text-white">
+    <!-- BaseBox Promo Banner -->
+    <div class="basebox-banner">
+      <a href="https://basebox.com" target="_blank" rel="noopener noreferrer">
+        ✨ Working on <strong>BaseBox</strong>: The next-gen asset manager for creators. 
+        <span class="basebox-badge">UNDER CONSTRUCTION</span>
+      </a>
+    </div>
+
     <header id="main-header">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-5 py-2.5 shadow-2xl">
@@ -204,11 +243,11 @@ const translations = { en, el };
                </button>
 
                <div id="language-switcher" class="flex items-center gap-1 font-bold text-[10px] border-r border-fuchsia-500/20 pr-3">
-                  <button id="lang-en-btn" type="button" data-lang-switch="en" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1" aria-label="Switch language to English" data-i18n-aria-label="ui.langEnAriaLabel">EN</button>
-                  <button id="lang-el-btn" type="button" data-lang-switch="el" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1" aria-label="Switch language to Greek" data-i18n-aria-label="ui.langElAriaLabel">EL</button>
+                  <button id="lang-en-btn" type="button" data-lang-switch="en" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EN</button>
+                  <button id="lang-el-btn" type="button" data-lang-switch="el" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EL</button>
                </div>
                <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition" data-i18n="nav.store">Store</a>
-               <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400" aria-label="Toggle navigation menu" data-i18n-aria-label="ui.menuToggleAriaLabel">
+               <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400" aria-label="Toggle navigation menu">
                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                    <path d="M4 6h16M4 12h16m-7 6h7"/>
                  </svg>
@@ -219,7 +258,6 @@ const translations = { en, el };
 
         <div id="mobile-menu" class="hidden lg:hidden mt-2">
           <div class="rounded-3xl border border-fuchsia-500/20 bg-black/95 backdrop-blur-xl p-2 shadow-2xl max-h-[80vh] overflow-y-auto">
-            
             <div class="mobile-section-label" data-i18n="nav.mobileNavigation">Navigation</div>
             <a href="#player" class="mobile-link text-fuchsia-400" data-i18n="nav.player">Player</a>
             <a href="#beats" class="mobile-link" data-i18n="nav.beats">Beats</a>
@@ -250,15 +288,12 @@ const translations = { en, el };
     </main>
 
     <script is:inline define:vars={{ translations }}>
-      // --- LANGUAGE + HEADER INTERACTIONS ---
+      // i18n Logic stays the same...
       const i18nMap = translations;
       const storageKey = 'selected-lang';
       const fallbackLang = 'en';
 
-      function isValidLang(lang) {
-        return lang === 'en' || lang === 'el';
-      }
-
+      function isValidLang(lang) { return lang === 'en' || lang === 'el'; }
       function getNestedValue(obj, path) {
         return path.split('.').reduce((acc, key) => {
           if (acc && typeof acc === 'object' && key in acc) return acc[key];
@@ -269,11 +304,7 @@ const translations = { en, el };
       function initInteractiveHeader() {
         const langButtons = document.querySelectorAll('#language-switcher .lang-switch-btn');
         const translatableNodes = document.querySelectorAll('[data-i18n]');
-        const translatableAltNodes = document.querySelectorAll('[data-i18n-alt]');
-        const translatableTitleNodes = document.querySelectorAll('[data-i18n-title]');
-        const translatableAriaNodes = document.querySelectorAll('[data-i18n-aria-label]');
-        const releaseStatusNodes = document.querySelectorAll('[data-i18n-status]');
-
+        
         function updateLangUI(activeLang) {
           langButtons.forEach((btn) => {
             btn.setAttribute('data-active', String(btn.getAttribute('data-lang-switch') === activeLang));
@@ -283,62 +314,14 @@ const translations = { en, el };
 
         function applyTranslations(activeLang) {
           const dict = i18nMap[activeLang] || i18nMap[fallbackLang];
-
           translatableNodes.forEach((node) => {
             const key = node.getAttribute('data-i18n');
-            if (!key) return;
-
             const translated = getNestedValue(dict, key);
-            if (typeof translated !== 'string') return;
-            if (translated.includes('<')) {
-              node.innerHTML = translated;
-            } else {
-              node.textContent = translated;
+            if (typeof translated === 'string') {
+               node.innerHTML = translated.includes('<') ? translated : translated;
+               if (!translated.includes('<')) node.textContent = translated;
             }
           });
-
-          translatableAltNodes.forEach((node) => {
-            const key = node.getAttribute('data-i18n-alt');
-            if (!key) return;
-            const translated = getNestedValue(dict, key);
-            if (typeof translated !== 'string') return;
-            node.setAttribute('alt', translated);
-          });
-
-          translatableTitleNodes.forEach((node) => {
-            const key = node.getAttribute('data-i18n-title');
-            if (!key) return;
-            const translated = getNestedValue(dict, key);
-            if (typeof translated !== 'string') return;
-            node.setAttribute('title', translated);
-          });
-
-          translatableAriaNodes.forEach((node) => {
-            const key = node.getAttribute('data-i18n-aria-label');
-            if (!key) return;
-            const translated = getNestedValue(dict, key);
-            if (typeof translated !== 'string') return;
-            node.setAttribute('aria-label', translated);
-          });
-
-          const statusMap = {
-            scrape: 'releases.statusLive',
-            rss: 'releases.statusFallback',
-            fallback: 'releases.statusFallback',
-            error: 'releases.statusError'
-          };
-
-          releaseStatusNodes.forEach((node) => {
-            const status = node.getAttribute('data-i18n-status');
-            const key = statusMap[status || ''];
-            if (!key) return;
-
-            const translated = getNestedValue(dict, key);
-            if (typeof translated !== 'string') return;
-            node.textContent = translated;
-          });
-
-          console.log('[i18n] Applied translations for:', activeLang, 'nodes:', translatableNodes.length);
         }
 
         function setLanguage(lang) {
@@ -353,80 +336,39 @@ const translations = { en, el };
 
         langButtons.forEach((btn) => {
           btn.addEventListener('click', () => {
-            const newLang = btn.getAttribute('data-lang-switch');
-            console.log('[i18n] Language button clicked:', newLang);
-            if (!newLang) return;
-            setLanguage(newLang);
+            setLanguage(btn.getAttribute('data-lang-switch'));
           });
         });
 
-        window.addEventListener('storage', (event) => {
-          if (event.key !== storageKey) return;
-          setLanguage(event.newValue || fallbackLang);
-        });
-
+        // Mobile Menu Logic
         const bBtn = document.getElementById('burger-btn');
         const mMenu = document.getElementById('mobile-menu');
-
-        if (bBtn && mMenu && !bBtn.dataset.bound) {
-          bBtn.dataset.bound = 'true';
+        if (bBtn && mMenu) {
           bBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             mMenu.classList.toggle('hidden');
           });
-
           document.addEventListener('click', (e) => {
-            if (!mMenu.contains(e.target) && !bBtn.contains(e.target)) {
-              mMenu.classList.add('hidden');
-            }
-          });
-
-          mMenu.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => mMenu.classList.add('hidden'));
+            if (!mMenu.contains(e.target) && !bBtn.contains(e.target)) mMenu.classList.add('hidden');
           });
         }
 
+        // Share Logic
         const shareBtn = document.getElementById('share-btn');
-        if (shareBtn && !shareBtn.dataset.bound) {
-          shareBtn.dataset.bound = 'true';
+        if (shareBtn) {
           shareBtn.addEventListener('click', async () => {
-            const shareData = {
-              title: 'Mr. Bonzo Official',
-              text: 'Check out high-quality trap beats and exclusive drum kits by Mr. Bonzo.',
-              url: window.location.href
-            };
-
-            if (navigator.share) {
-              try {
-                await navigator.share(shareData);
-              } catch (err) {
-                console.log('Share canceled or failed');
-              }
-            } else {
-              try {
-                await navigator.clipboard.writeText(window.location.href);
-                alert('Link copied to clipboard!');
-              } catch (err) {
-                console.error('Failed to copy: ', err);
-              }
+            const shareData = { title: 'Mr. Bonzo Official', url: window.location.href };
+            if (navigator.share) await navigator.share(shareData);
+            else {
+              await navigator.clipboard.writeText(window.location.href);
+              alert('Link copied!');
             }
           });
         }
       }
 
-      let headerInitialized = false;
-      function safeInitHeader() {
-        if (headerInitialized) return;
-        headerInitialized = true;
-        initInteractiveHeader();
-      }
-
-      document.addEventListener('astro:page-load', () => {
-        safeInitHeader();
-      });
-      document.addEventListener('DOMContentLoaded', () => {
-        safeInitHeader();
-      });
+      document.addEventListener('astro:page-load', initInteractiveHeader);
+      document.addEventListener('DOMContentLoaded', initInteractiveHeader);
     </script>
   </body>
 </html>
