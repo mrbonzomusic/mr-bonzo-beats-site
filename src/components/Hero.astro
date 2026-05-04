@@ -6,8 +6,9 @@ const logoPath = "/images/logo-main.webp";
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,70,239,0.2),_transparent_50%)]"></div>
 
   <div class="relative flex flex-col items-center text-center w-full">
+    <!-- ΔΙΟΡΘΩΣΗ: Αφαιρέθηκε η προβληματική κλάση και το κείμενο ελέγχεται από το data-i18n -->
     <p
-      class="eyebrow-hero-label eyebrow-hero-label--hero mb-3"
+      class="mb-3 text-[11px] font-bold tracking-[0.3em] uppercase text-fuchsia-500 sm:text-xs"
       data-i18n="hero.label"
     >
       Official Website
@@ -54,4 +55,6 @@ const logoPath = "/images/logo-main.webp";
   .animate-fade-in {
     animation: fadeIn 1s ease-out forwards;
   }
+
+  /* ΠΡΟΣΟΧΗ: Αν υπήρχε εδώ το .eyebrow-hero-label--hero::before { content: "..." }, το αφαιρέσαμε! */
 </style>
