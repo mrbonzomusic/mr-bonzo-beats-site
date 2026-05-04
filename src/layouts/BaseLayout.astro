@@ -10,7 +10,8 @@ interface Props {
 
 const { title = "Mr. Bonzo | Official Website" } = Astro.props;
 const logoPath = "/images/logo-main.webp";
-const socialPreviewImage = "https://mrbonzo-beats.pages.dev/og-image.jpg?v=1";
+// Ενημερωμένο Path με το v2 όνομα που έφτιαξες
+const socialPreviewImage = "https://mrbonzo-beats.pages.dev/og-image-v2.jpg";
 const siteDescription = "The official website of Mr. Bonzo. Music production, high-quality trap beats, and exclusive drum kits.";
 const siteURL = "https://mrbonzo-beats.pages.dev/";
 
@@ -32,12 +33,17 @@ const translations = { en, el };
     
     <meta name="description" content={siteDescription} />
     <meta property="og:url" content={siteURL} />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={siteDescription} />
     <meta property="og:image" content={socialPreviewImage} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={siteDescription} />
     <meta name="twitter:image" content={socialPreviewImage} />
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -166,23 +172,23 @@ const translations = { en, el };
             </nav>
 
             <div class="flex items-center gap-2">
-               <button id="share-btn" class="p-1.5 text-fuchsia-400 hover:text-fuchsia-300 transition-all active:scale-90" title="Share Website">
+                <button id="share-btn" class="p-1.5 text-fuchsia-400 hover:text-fuchsia-300 transition-all active:scale-90" title="Share Website">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                 </svg>
-               </button>
+                </button>
 
-               <div id="language-switcher" class="flex items-center gap-1 font-bold text-[10px] border-r border-fuchsia-500/20 pr-3">
+                <div id="language-switcher" class="flex items-center gap-1 font-bold text-[10px] border-r border-fuchsia-500/20 pr-3">
                   <button type="button" data-lang-switch="en" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EN</button>
                   <button type="button" data-lang-switch="el" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EL</button>
-               </div>
+                </div>
 
-               <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition" data-i18n="nav.store">Store</a>
-               <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400">
-                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                   <path d="M4 6h16M4 12h16m-7 6h7"/>
-                 </svg>
-               </button>
+                <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition" data-i18n="nav.store">Store</a>
+                <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 6h16M4 12h16m-7 6h7"/>
+                  </svg>
+                </button>
             </div>
           </div>
         </div>
@@ -227,21 +233,18 @@ const translations = { en, el };
         const activeLang = localStorage.getItem(storageKey) || fallbackLang;
         const dict = i18nMap[activeLang] || i18nMap[fallbackLang];
         
-        // 1. Ενημέρωση κειμένων (data-i18n)
         document.querySelectorAll('[data-i18n]').forEach((node) => {
           const key = node.getAttribute('data-i18n');
           const translated = getNestedValue(dict, key);
           if (typeof translated === 'string') node.innerHTML = translated;
         });
 
-        // 2. Ενημέρωση Alt (data-i18n-alt)
         document.querySelectorAll('[data-i18n-alt]').forEach((node) => {
           const key = node.getAttribute('data-i18n-alt');
           const translated = getNestedValue(dict, key);
           if (typeof translated === 'string') node.setAttribute('alt', translated);
         });
 
-        // 3. Ενημέρωση UI Buttons & HTML Lang
         document.querySelectorAll('.lang-switch-btn').forEach((btn) => {
           btn.setAttribute('data-active', String(btn.getAttribute('data-lang-switch') === activeLang));
         });
@@ -249,10 +252,8 @@ const translations = { en, el };
       }
 
       function initInteractiveHeader() {
-        // Αρχική εφαρμογή
         applyTranslations();
 
-        // Listeners για αλλαγή γλώσσας
         document.querySelectorAll('.lang-switch-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
             const lang = btn.getAttribute('data-lang-switch');
@@ -261,7 +262,6 @@ const translations = { en, el };
           });
         });
 
-        // Burger Menu logic
         const bBtn = document.getElementById('burger-btn');
         const mMenu = document.getElementById('mobile-menu');
         if (bBtn && mMenu) {
@@ -269,7 +269,6 @@ const translations = { en, el };
           document.onclick = (e) => { if (!mMenu.contains(e.target) && !bBtn.contains(e.target)) mMenu.classList.add('hidden'); };
         }
 
-        // Share logic
         const shareBtn = document.getElementById('share-btn');
         if (shareBtn) {
           shareBtn.onclick = async () => {
@@ -280,11 +279,8 @@ const translations = { en, el };
         }
       }
 
-      // Σημαντικό: Τρέξε το αμέσως και σε κάθε Page Load (Astro)
       initInteractiveHeader();
       document.addEventListener('astro:page-load', initInteractiveHeader);
-      
-      // Extra check για καθυστερημένα components (όπως το Hero)
       window.addEventListener('load', applyTranslations);
     </script>
   </body>
