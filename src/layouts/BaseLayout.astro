@@ -62,21 +62,18 @@ const translations = { en, el };
     <script data-goatcounter="https://mrbonzo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <style is:global>
-      /* --- BaseBox Banner --- */
+      /* --- BaseBox Banner Fixes --- */
       .basebox-banner {
         background: linear-gradient(90deg, #000, #1a001a, #000);
         color: #fff;
         text-align: center;
-        padding: 8px 16px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.05em;
+        padding: 8px 12px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
         text-transform: uppercase;
         border-bottom: 1px solid rgba(217, 70, 239, 0.2);
-        position: fixed; /* Fixed για να μένει πάντα πάνω */
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative; /* Αλλαγή σε relative για να μην καλυπτει το header */
         z-index: 10000001;
         display: flex;
         justify-content: center;
@@ -84,48 +81,48 @@ const translations = { en, el };
         min-height: 40px;
       }
       
-      .basebox-banner a { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        gap: 8px; 
-        color: inherit; 
-        text-decoration: none; 
-      }
+      .basebox-banner a { color: inherit; text-decoration: none; transition: transform 0.2s; line-height: 1.4; }
       .basebox-banner strong { color: #d946ef; font-weight: 900; }
       
       .basebox-badge {
         background: rgba(217, 70, 239, 0.15);
         color: #d946ef;
-        padding: 2px 10px;
+        padding: 2px 8px;
         border-radius: 99px;
         font-size: 9px;
+        margin-left: 8px;
         border: 1px solid rgba(217, 70, 239, 0.4);
+        animation: pulse 2s infinite;
+        display: inline-block;
         white-space: nowrap;
       }
 
-      /* Desktop vs Mobile Text Logic */
-      .banner-desktop-text { display: inline; }
-      .banner-mobile-text { display: none; }
-
-      @media (max-width: 640px) {
-        .basebox-banner { font-size: 9px; padding: 6px 10px; min-height: 36px; }
-        .banner-desktop-text { display: none; }
-        .banner-mobile-text { display: inline; }
-        .basebox-badge { font-size: 8px; padding: 1px 6px; }
+      @keyframes pulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; box-shadow: 0 0 10px rgba(217, 70, 239, 0.2); }
+        100% { opacity: 0.8; }
       }
 
       /* --- Header & Layout --- */
       header#main-header {
         position: fixed !important;
+        /* Το 'top' θα υπολογίζεται από το script παρακάτω */
         left: 0 !important;
         right: 0 !important;
         z-index: 9999999 !important;
-        padding-top: 0.75rem;
-        transition: top 0.2s ease;
+        padding-top: 0.5rem;
       }
 
-      body { background-color: black; }
+      body { 
+        padding-top: 0 !important; /* Θα υπολογίζεται από το script */
+        background-color: black; 
+      }
+
+      /* Mobile Specific Font sizing */
+      @media (max-width: 640px) {
+        .basebox-banner { font-size: 8px; }
+        .basebox-badge { font-size: 7.5px; margin-left: 4px; }
+      }
 
       .nav-divider { width: 1px; height: 14px; background-color: rgba(217, 70, 239, 0.3); margin: 0 6px; flex-shrink: 0; }
       .nav-dropdown { position: relative; display: inline-block; padding-bottom: 20px; margin-bottom: -20px; }
@@ -135,21 +132,22 @@ const translations = { en, el };
         z-index: 1000; border: 1px solid rgba(217, 70, 239, 0.2);
         border-radius: 14px; margin-top: 5px; backdrop-filter: blur(12px);
       }
-      .nav-dropdown:hover .nav-dropdown-content { display: block; }
+      .nav-dropdown:hover .nav-dropdown-content { display: block; animation: dropdownFade 0.2s ease-out; }
+      @keyframes dropdownFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
       #mobile-menu.hidden { display: none; }
-      .mobile-link { display: block; padding: 0.85rem 1rem; color: #e5e7eb; font-weight: 800; text-transform: uppercase; font-size: 11px; }
-      .mobile-section-label { font-size: 9px; font-weight: 900; text-transform: uppercase; color: #d946ef; padding: 1.5rem 1rem 0.5rem 1rem; opacity: 0.8; }
+      .mobile-link { display: block; padding: 0.85rem 1rem; color: #e5e7eb; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+      .mobile-section-label { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: #d946ef; padding: 1.5rem 1rem 0.5rem 1rem; opacity: 0.8; }
     </style>
   </head>
 
   <body class="min-h-screen antialiased bg-black text-white">
     
+    <!-- Banner: Relative position so it pushes content down -->
     <div class="basebox-banner">
       <a href="https://forms.gle/AC86bRqwhfNmbCUh9" target="_blank" rel="noopener noreferrer">
-        <span>🚀 <strong>BASEBOX</strong>:</span>
-        <span class="banner-desktop-text" data-i18n="basebox.bannerSubtitle">The Automated Artist & Catalog Manager. Send to PROs in seconds.</span> 
-        <span class="banner-mobile-text">The AI Artist Manager.</span>
-        <span class="basebox-badge" data-i18n="basebox.waitlistBtn">GET ACCESS</span>
+        🚀 <strong data-i18n="basebox.bannerTitle">BaseBox</strong>: 
+        <span data-i18n="basebox.bannerSubtitle">The Automated Artist & Catalog Manager. Send to PROs & Labels in seconds.</span> 
+        <span class="basebox-badge" data-i18n="basebox.waitlistBtn">GET EARLY ACCESS</span>
       </a>
     </div>
 
@@ -158,7 +156,7 @@ const translations = { en, el };
         <div class="rounded-full border border-fuchsia-500/20 bg-black/90 backdrop-blur-md px-5 py-2.5 shadow-2xl">
           <div class="flex items-center justify-between">
             <a href="/" class="flex-shrink-0 transition hover:scale-105">
-              <img src={logoPath} alt="Logo" class="h-[22px] w-auto sm:h-[30px]" />
+              <img src={logoPath} alt="Logo" data-i18n-alt="ui.logoAlt" class="h-[22px] w-auto sm:h-[30px]" />
             </a>
 
             <nav class="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
@@ -166,24 +164,70 @@ const translations = { en, el };
               <a href="#beats" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.beats">Beats</a>
               <a href="#drumkits" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.kits">Kits</a>
               <a href="#latest-releases" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.releases">Releases</a>
+              
               <div class="nav-divider"></div>
+
+              <div class="nav-dropdown" tabindex="0">
+                <button class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition flex items-center gap-1.5 outline-none">
+                  <span data-i18n="nav.youtube">YouTube</span> <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="nav-dropdown-content">
+                  <a href={ytBeats} target="_blank" data-i18n="nav.youtubeBeats">Beats Channel</a>
+                  <a href={ytArtist} target="_blank" data-i18n="nav.youtubeArtist">Artist Channel</a>
+                </div>
+              </div>
+
               <a href={spotifyLink} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.spotify">Spotify</a>
+              <a href={tikTokLink} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.tiktok">TikTok</a>
+              <a href={pond5Link} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.pond5">Pond5</a>
               <a href={discordInvite} target="_blank" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.discord">Discord</a>
+              
               <div class="nav-divider"></div>
+
               <a href="#about" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.about">About</a>
               <a href="#contact" class="text-[11px] font-bold uppercase tracking-wider text-fuchsia-100/70 hover:text-fuchsia-400 transition" data-i18n="nav.contact">Contact</a>
             </nav>
 
             <div class="flex items-center gap-2">
+                <button id="share-btn" class="p-1.5 text-fuchsia-400 hover:text-fuchsia-300 transition-all active:scale-90" title="Share Website">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+                </button>
+
                 <div id="language-switcher" class="flex items-center gap-1 font-bold text-[10px] border-r border-fuchsia-500/20 pr-3">
                   <button type="button" data-lang-switch="en" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EN</button>
                   <button type="button" data-lang-switch="el" class="lang-switch-btn text-fuchsia-200/40 data-[active=true]:text-fuchsia-400 px-1">EL</button>
                 </div>
+
                 <a href={beatstarsLinks.profile} target="_blank" class="rounded-full bg-fuchsia-600 px-4 py-1.5 text-[10px] font-black uppercase text-white hover:bg-fuchsia-500 transition" data-i18n="nav.store">Store</a>
                 <button id="burger-btn" class="lg:hidden p-1 text-fuchsia-400">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 6h16M4 12h16m-7 6h7"/>
+                  </svg>
                 </button>
             </div>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden mt-2">
+          <div class="rounded-3xl border border-fuchsia-500/20 bg-black/95 backdrop-blur-xl p-2 shadow-2xl max-h-[80vh] overflow-y-auto">
+            <div class="mobile-section-label" data-i18n="nav.mobileNavigation">Navigation</div>
+            <a href="#player" class="mobile-link text-fuchsia-400" data-i18n="nav.player">Player</a>
+            <a href="#beats" class="mobile-link" data-i18n="nav.beats">Beats</a>
+            <a href="#drumkits" class="mobile-link" data-i18n="nav.drumKits">Drum Kits</a>
+            <a href="#latest-releases" class="mobile-link" data-i18n="nav.releases">Releases</a>
+            <div class="mobile-section-label" data-i18n="nav.mobileChannels">Channels</div>
+            <a href={ytBeats} target="_blank" class="mobile-link" data-i18n="nav.youtubeBeats">YouTube Beats</a>
+            <a href={ytArtist} target="_blank" class="mobile-link" data-i18n="nav.youtubeArtist">YouTube Artist</a>
+            <div class="mobile-section-label" data-i18n="nav.mobileSocialMore">Social & More</div>
+            <a href={spotifyLink} target="_blank" class="mobile-link" data-i18n="nav.spotify">Spotify</a>
+            <a href={tikTokLink} target="_blank" class="mobile-link" data-i18n="nav.tiktok">TikTok</a>
+            <a href={pond5Link} target="_blank" class="mobile-link" data-i18n="nav.pond5">Pond5</a>
+            <a href={discordInvite} target="_blank" class="mobile-link" data-i18n="nav.discord">Discord</a>
+            <div class="h-px bg-white/5 my-2 mx-4"></div>
+            <a href="#about" class="mobile-link opacity-70" data-i18n="nav.about">About</a>
+            <a href="#contact" class="mobile-link opacity-70" data-i18n="nav.contact">Contact</a>
           </div>
         </div>
       </div>
@@ -194,52 +238,81 @@ const translations = { en, el };
     </main>
 
     <script is:inline define:vars={{ translations }}>
-      function applyTranslations() {
-        const lang = localStorage.getItem('selected-lang') || 'en';
-        const dict = translations[lang];
-        document.querySelectorAll('[data-i18n]').forEach(node => {
-          const key = node.getAttribute('data-i18n');
-          const val = key.split('.').reduce((o, i) => o[i], dict);
-          if (val) node.innerHTML = val;
-        });
-        document.querySelectorAll('.lang-switch-btn').forEach(btn => {
-          btn.setAttribute('data-active', btn.getAttribute('data-lang-switch') === lang);
-        });
+      const i18nMap = translations;
+      const storageKey = 'selected-lang';
+      const fallbackLang = 'en';
+
+      function getNestedValue(obj, path) {
+        return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
       }
 
+      function applyTranslations() {
+        const activeLang = localStorage.getItem(storageKey) || fallbackLang;
+        const dict = i18nMap[activeLang] || i18nMap[fallbackLang];
+        
+        document.querySelectorAll('[data-i18n]').forEach((node) => {
+          const key = node.getAttribute('data-i18n');
+          const translated = getNestedValue(dict, key);
+          if (typeof translated === 'string') node.innerHTML = translated;
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach((node) => {
+          const key = node.getAttribute('data-i18n-alt');
+          const translated = getNestedValue(dict, key);
+          if (typeof translated === 'string') node.setAttribute('alt', translated);
+        });
+
+        document.querySelectorAll('.lang-switch-btn').forEach((btn) => {
+          btn.setAttribute('data-active', String(btn.getAttribute('data-lang-switch') === activeLang));
+        });
+        document.documentElement.lang = activeLang;
+      }
+
+      // Δυναμικός υπολογισμός ύψους για το header και το body
       function adjustLayout() {
         const banner = document.querySelector('.basebox-banner');
-        const header = document.querySelector('header#main-header');
+        const header = document.getElementById('main-header');
         if (banner && header) {
-          const bannerH = banner.offsetHeight;
-          const headerH = header.offsetHeight;
-          header.style.top = bannerH + 'px';
-          // ΣΠΡΩΞΙΜΟ HERO: Υπολογίζουμε Banner + Header + Extra αέρα (40px)
-          document.body.style.paddingTop = (bannerH + headerH + 40) + 'px';
+          const bannerHeight = banner.offsetHeight;
+          header.style.top = bannerHeight + 'px';
+          // Προσθέτουμε 100px extra για να μην κολλάει το περιεχόμενο στο menu
+          document.body.style.paddingTop = (bannerHeight + 100) + 'px';
         }
       }
 
+      function initInteractiveHeader() {
+        applyTranslations();
+        adjustLayout();
+
+        document.querySelectorAll('.lang-switch-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang-switch');
+            localStorage.setItem(storageKey, lang);
+            applyTranslations();
+          });
+        });
+
+        const bBtn = document.getElementById('burger-btn');
+        const mMenu = document.getElementById('mobile-menu');
+        if (bBtn && mMenu) {
+          bBtn.onclick = (e) => { e.stopPropagation(); mMenu.classList.toggle('hidden'); };
+          document.onclick = (e) => { if (!mMenu.contains(e.target) && !bBtn.contains(e.target)) mMenu.classList.add('hidden'); };
+        }
+
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+          shareBtn.onclick = async () => {
+            const shareData = { title: 'Mr. Bonzo Official', url: window.location.href };
+            if (navigator.share) await navigator.share(shareData);
+            else { await navigator.clipboard.writeText(window.location.href); alert('Link copied!'); }
+          };
+        }
+      }
+
+      initInteractiveHeader();
       window.addEventListener('resize', adjustLayout);
-      window.addEventListener('load', () => {
-        applyTranslations();
-        adjustLayout();
-      });
-      document.addEventListener('astro:page-load', () => {
-        applyTranslations();
-        adjustLayout();
-      });
-
-      document.querySelectorAll('.lang-switch-btn').forEach(btn => {
-        btn.onclick = () => {
-          localStorage.setItem('selected-lang', btn.getAttribute('data-lang-switch'));
-          applyTranslations();
-          setTimeout(adjustLayout, 50);
-        };
-      });
-
-      const bBtn = document.getElementById('burger-btn');
-      const mMenu = document.getElementById('mobile-menu');
-      if (bBtn) bBtn.onclick = () => mMenu?.classList.toggle('hidden');
+      document.addEventListener('astro:page-load', initInteractiveHeader);
+      window.addEventListener('load', applyTranslations);
     </script>
   </body>
 </html>
